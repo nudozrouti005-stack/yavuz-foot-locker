@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yavuz Foot Locker</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Yavuz Foot Locker – značková sportovní obuv v Brně.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;800&family=Instrument+Serif:ital@0;1&display=swap">
+<style>/* Yavuz Foot Locker — design system "Cinema Corner".
+   Layout: a dark page; heroes sit inside a framed screen (frame + halftone + crosshair), micro navigation in
+   [ brackets ] pinned to corners, content on a centred 1240px track with one section rhythm. Single dark theme by design. */
+:root{
+  color-scheme:dark;
+  /* colour */
+  --ink:#0B0B0C;       /* page */
+  --carbon:#151517;    /* frame, surfaces */
+  --graphite:#1F1F22;  /* cards, fields */
+  --bone:#ECE9E3;      /* text */
+  --ash:#8C8A86;       /* muted text */
+  --line:rgba(236,233,227,.14);
+  --line-strong:rgba(236,233,227,.32);
+  --cyan:#8FE6EA;      /* the one accent */
+  --on-cyan:#0B0B0C;
+  --shadow:rgba(0,0,0,.6);
+  /* aliases kept for older markup (map, inline styles) */
+  --paper:var(--graphite); --mute:var(--ash); --accent:var(--cyan); --accent-ink:var(--cyan); --stone:var(--ink);
+  /* type */
+  --sans:"Inter Tight","Inter","Helvetica Neue",Arial,sans-serif;
+  --serif:"Instrument Serif","Times New Roman",Georgia,serif;
+  --fs-display:clamp(2.6rem,7.2vw,6.2rem);
+  --fs-h2:clamp(2.2rem,5vw,4rem);
+  --fs-h3:clamp(1.3rem,2.2vw,1.6rem);
+  --fs-lead:clamp(1.05rem,1.5vw,1.2rem);
+  --fs-micro:.75rem;
+  /* space & shape */
+  --section:clamp(5rem,12vw,9rem);
+  --frame:clamp(12px,3vw,40px);
+  --track:1240px;
+  --r:4px; --r-frame:10px;
+  --halftone:radial-gradient(rgba(236,233,227,.2) 1px,transparent 1.7px) 0 0/6px 6px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{background:var(--ink);color:var(--bone);font-family:var(--sans);font-size:1rem;line-height:1.6;margin:0;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+a{color:inherit}
+img,svg{max-width:100%}
+::selection{background:var(--cyan);color:var(--on-cyan)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--track);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:700px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+.section{padding-block:var(--section)}
+.section + .section{border-top:1px solid var(--line)}
+.skip{position:absolute;left:-999px;top:0}
+.skip:focus{left:16px;top:16px;z-index:100;background:var(--cyan);color:var(--on-cyan);padding:.6rem 1rem}
+
+/* ---------- type ---------- */
+h1,h2,h3{font-family:var(--sans);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.92;margin:0;text-wrap:balance}
+h2{font-size:var(--fs-h2)}
+h3{font-size:var(--fs-h3);line-height:1.02;letter-spacing:-.01em}
+p{margin:0;max-width:62ch}
+.serif,h1 em,h2 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:uppercase;letter-spacing:-.01em}
+.accent,.hl{color:var(--cyan)}
+.eyebrow,.micro{font-size:var(--fs-micro);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ash);display:inline-flex;gap:.35em}
+.eyebrow::before,.micro::before{content:"["}
+.eyebrow::after,.micro::after{content:"]"}
+.lead{font-size:var(--fs-lead);line-height:1.55;color:var(--ash)}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- bracket links (navigation & tertiary actions) ---------- */
+.bracket{display:inline-flex;gap:.35em;font-size:var(--fs-micro);font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--bone);padding:.35rem .1rem;transition:color .2s}
+.bracket::before{content:"["}
+.bracket::after{content:"]"}
+.bracket::before,.bracket::after{display:inline-block;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.bracket:hover{color:var(--cyan)}
+.bracket:hover::before{transform:translateX(-3px)}
+.bracket:hover::after{transform:translateX(3px)}
+.bracket[aria-current="page"]{color:var(--cyan)}
+
+/* ---------- header ---------- */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--ink) 86%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.head-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:64px}
+.brand{display:block;text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.86;font-size:1.05rem}
+.brand span{display:block}
+.nav{display:none;gap:1.4rem;list-style:none;margin:0;padding:0;align-items:center}
+.nav .sep{width:1px;height:14px;background:var(--line-strong)}
+.menu{position:relative}
+.menu summary{list-style:none;cursor:pointer}
+.menu summary::-webkit-details-marker{display:none}
+.menu[open] .menu-panel{display:grid}
+.menu-panel{display:none;position:absolute;right:0;top:calc(100% + .75rem);min-width:220px;gap:.25rem;padding:.75rem 1rem;background:var(--carbon);border:1px solid var(--line);border-radius:var(--r)}
+@media (min-width:860px){.nav{display:flex}.menu{display:none}}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--sans);font-weight:800;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:.95rem 1.35rem;border-radius:var(--r);border:0;cursor:pointer;background:var(--cyan);color:var(--on-cyan);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.btn svg{width:16px;height:16px;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.btn:hover{transform:translateY(-2px)}
+.btn:hover svg{transform:translateX(3px)}
+.btn--ghost{background:transparent;color:var(--bone);box-shadow:inset 0 0 0 1px var(--line-strong)}
+.more{display:inline-flex;align-items:center;gap:.5rem;font-size:var(--fs-micro);font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--bone)}
+.more::before{content:"["}
+.more::after{content:"]"}
+.more svg{width:14px;height:14px;color:var(--cyan);transition:transform .25s}
+.more:hover{color:var(--cyan)}
+.more:hover svg{transform:translateX(4px)}
+
+/* ---------- framed screen hero ---------- */
+.frame-hero{padding:var(--frame)}
+.frame{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--r-frame);background:var(--carbon);min-height:min(82svh,760px);display:grid;place-items:center;padding:clamp(4.5rem,10vw,7rem) clamp(16px,4vw,48px)}
+.frame-hero--page .frame{min-height:0;padding-block:clamp(4.5rem,11vw,8rem)}
+.frame::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--halftone);-webkit-mask-image:radial-gradient(ellipse 70% 65% at 50% 50%,transparent 40%,#000 95%);mask-image:radial-gradient(ellipse 70% 65% at 50% 50%,transparent 40%,#000 95%);opacity:.7}
+.frame::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(var(--line),var(--line)) 50% 0/1px 100% no-repeat,linear-gradient(var(--line),var(--line)) 0 50%/100% 1px no-repeat}
+.frame-media{position:absolute;inset:0;z-index:-2}
+.frame-media img{position:absolute;width:clamp(180px,30vw,440px);height:auto;filter:saturate(.85) brightness(.78);will-change:transform;animation:float 9s ease-in-out infinite alternate}
+.frame-media::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(11,11,12,.86),rgba(11,11,12,.35) 70%,rgba(11,11,12,.75))}
+.frame-media img:nth-child(1){left:-3%;top:6%;transform:rotate(-9deg)}
+.frame-media img:nth-child(2){right:-4%;top:4%;transform:rotate(8deg) scaleX(-1);animation-delay:-3s}
+.frame-media img:nth-child(3){left:4%;bottom:-2%;transform:rotate(6deg);animation-delay:-5s}
+.frame-media img:nth-child(4){right:2%;bottom:-4%;transform:rotate(-7deg) scaleX(-1);animation-delay:-7s}
+@keyframes float{to{translate:0 -12px}}
+.frame-copy{display:grid;gap:1.4rem;justify-items:center;text-align:center;max-width:980px}
+.display{font-size:var(--fs-display);line-height:.88;letter-spacing:-.03em}
+.display span{display:block}
+.display .serif{font-weight:400;letter-spacing:-.01em;line-height:1}
+.frame-copy .lead{max-width:52ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
+.corner{position:absolute;z-index:2}
+.corner.tl{left:clamp(14px,2.4vw,28px);top:clamp(14px,2.4vw,24px)}
+.corner.tr{right:clamp(14px,2.4vw,28px);top:clamp(14px,2.4vw,24px)}
+.corner.bl{left:clamp(14px,2.4vw,28px);bottom:clamp(12px,2.2vw,22px)}
+.corner.br{right:clamp(14px,2.4vw,28px);bottom:clamp(12px,2.2vw,22px)}
+
+/* ---------- release strip ---------- */
+.release{display:grid;gap:1.5rem;align-items:center;border:1px solid var(--line);border-radius:var(--r);padding:clamp(1.25rem,3vw,2rem);background:var(--carbon)}
+.release img{width:100%;height:auto;filter:drop-shadow(0 20px 18px var(--shadow))}
+.release .specs{display:flex;flex-wrap:wrap;gap:1.5rem;margin:0;padding:0;list-style:none}
+.release .specs b{display:block;font-weight:800;font-size:1.6rem;line-height:1;font-variant-numeric:tabular-nums}
+.release .specs span{font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--ash)}
+.release-copy{display:grid;gap:1rem;justify-items:start}
+@media (min-width:860px){.release{grid-template-columns:1fr 1.1fr}}
+
+/* ---------- section head ---------- */
+.sec-head{display:grid;gap:1.25rem;margin-bottom:clamp(2.5rem,6vw,4.5rem)}
+.sec-head > div:first-child{display:grid;gap:1rem;justify-items:start}
+@media (min-width:860px){.sec-head{grid-template-columns:1.2fr 1fr;align-items:end}.sec-head .side{display:grid;gap:1.25rem;justify-items:start}}
+
+/* ---------- product cards ---------- */
+.grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{position:relative;display:flex;flex-direction:column;background:var(--ink);transition:background-color .3s}
+.card:hover{background:var(--carbon)}
+.card-media{display:block}
+.card figure{margin:0;aspect-ratio:4/3;max-width:100%;overflow:hidden;display:grid;place-items:center;position:relative;
+  background:radial-gradient(60% 55% at 50% 60%,color-mix(in srgb,var(--tint) 26%,transparent),transparent 75%),var(--carbon)}
+.card figure::before{content:"";position:absolute;inset:0;background:var(--halftone);opacity:.35;-webkit-mask-image:radial-gradient(ellipse at center,transparent 35%,#000 90%);mask-image:radial-gradient(ellipse at center,transparent 35%,#000 90%)}
+.card figure img{position:relative;display:block;width:90%;height:auto;filter:drop-shadow(0 18px 16px var(--shadow));transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover figure img{transform:translateY(-6px) scale(1.03)}
+.card-body{display:flex;flex-direction:column;gap:.85rem;padding:clamp(1.25rem,2.5vw,1.6rem);flex:1}
+.meta{display:flex;flex-wrap:wrap;gap:.3rem 1rem;font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--ash);font-variant-numeric:tabular-nums}
+.meta span:first-child{color:var(--cyan);font-weight:600}
+.card-link{text-decoration:none}
+.card-link:hover{color:var(--cyan)}
+.card p{color:var(--ash)}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:auto;padding-top:1rem;border-top:1px solid var(--line)}
+.price{font-weight:800;font-size:1.5rem;line-height:1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.sizes{font-size:var(--fs-micro);letter-spacing:.06em;color:var(--ash);margin-top:.3rem}
+
+/* ---------- split, stats, features ---------- */
+.split{display:grid;gap:clamp(2.5rem,6vw,5rem)}
+@media (min-width:900px){.split{grid-template-columns:1fr 1fr;align-items:start}}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.stat{background:var(--ink);padding:1.5rem;display:grid;gap:.5rem;align-content:start}
+.stat b{font-weight:800;font-size:clamp(2.4rem,5.5vw,3.4rem);line-height:.9;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat span{color:var(--ash);font-size:.9rem;line-height:1.4}
+.features{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (min-width:760px){.features{grid-template-columns:repeat(3,1fr)}.features.two{grid-template-columns:repeat(2,1fr)}}
+.feature{display:grid;gap:.9rem;align-content:start;padding:clamp(1.5rem,3vw,2rem);background:var(--ink);color:inherit;transition:background-color .3s}
+.feature:hover{background:var(--carbon)}
+.feature .ico{width:44px;height:44px;border:1px solid var(--line-strong);border-radius:var(--r);display:grid;place-items:center;color:var(--cyan);transition:transform .3s}
+.feature:hover .ico{transform:translateY(-3px)}
+.feature .ico svg{width:22px;height:22px}
+.feature p{color:var(--ash)}
+.feature .tag{font-size:var(--fs-micro);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);font-variant-numeric:tabular-nums}
+
+/* ---------- contact band ---------- */
+.band{background:var(--carbon);position:relative;isolation:isolate}
+.band::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--halftone);opacity:.4;-webkit-mask-image:linear-gradient(90deg,transparent 35%,#000);mask-image:linear-gradient(90deg,transparent 35%,#000)}
+.band-grid{display:grid;gap:2.5rem}
+.band-grid > div{display:grid;gap:1.5rem;justify-items:start}
+@media (min-width:900px){.band-grid{grid-template-columns:1.4fr 1fr;align-items:end}}
+.facts{display:grid;gap:1rem;margin:0;padding:0;list-style:none}
+.facts li{display:flex;gap:.9rem;align-items:flex-start;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.facts svg{width:20px;height:20px;flex:none;color:var(--cyan);margin-top:.2rem}
+
+/* ---------- quote, timeline, chips, table ---------- */
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(2rem,5vw,3.6rem);line-height:1.02;margin:0;text-wrap:balance}
+.quote-by{margin-top:1.5rem;color:var(--ash);font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase}
+.timeline{display:grid;margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.timeline li{display:grid;grid-template-columns:5rem 1fr;gap:1rem;padding-block:1.4rem;border-bottom:1px solid var(--line)}
+.timeline b{font-weight:800;font-size:1.4rem;line-height:1;color:var(--cyan);font-variant-numeric:tabular-nums}
+.timeline p{color:var(--ash)}
+.timeline strong{display:block;color:var(--bone);margin-bottom:.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:.25rem 1.4rem;margin-bottom:2rem}
+.chips a{display:inline-flex;gap:.35em;font-size:var(--fs-micro);font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ash);padding:.35rem 0;transition:color .2s}
+.chips a::before{content:"["}
+.chips a::after{content:"]"}
+.chips a:hover,.chips a.on{color:var(--cyan)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:.9rem 1.1rem;border-bottom:1px solid var(--line)}
+th{font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--ash);font-weight:600}
+tr:last-child td{border-bottom:0}
+
+/* ---------- form ---------- */
+.form{display:grid;gap:1rem;padding:clamp(1.5rem,3vw,2.25rem);background:var(--carbon);border:1px solid var(--line);border-radius:var(--r)}
+.form .row{display:grid;gap:1rem}
+@media (min-width:600px){.form .row{grid-template-columns:1fr 1fr}}
+.field{display:grid;gap:.4rem;min-width:0}
+.field label{font-size:var(--fs-micro);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ash)}
+.field input,.field select,.field textarea{font:inherit;color:var(--bone);background:var(--ink);border:1px solid var(--line-strong);border-radius:var(--r);padding:.8rem .9rem;width:100%;transition:border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cyan);outline:none}
+.field textarea{min-height:120px;resize:vertical}
+.form-note{font-size:var(--fs-micro);color:var(--ash)}
+.sent{display:none;padding:1rem 1.1rem;border-radius:var(--r);background:var(--cyan);color:var(--on-cyan);font-weight:600}
+.sent.show{display:block}
+.map{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--graphite)}
+
+/* ---------- footer ---------- */
+.site-foot{padding-block:clamp(3.5rem,7vw,5rem) 2.5rem;border-top:1px solid var(--line)}
+.foot-grid{display:grid;gap:2rem}
+@media (min-width:760px){.foot-grid{grid-template-columns:1.5fr 1fr 1fr 1fr}}
+.foot-grid h4{font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--ash);margin:0 0 .8rem;font-weight:600}
+.foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:.45rem}
+.foot-grid a{text-decoration:none}
+.foot-grid a:hover{color:var(--cyan)}
+.wordmark{font-weight:800;text-transform:uppercase;letter-spacing:-.04em;font-size:min(10.6vw,9rem);line-height:.9;margin-top:clamp(3rem,7vw,5rem);color:transparent;-webkit-text-stroke:1px var(--line-strong);white-space:nowrap;overflow:hidden}
+.legal{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;margin-top:1.5rem;font-size:var(--fs-micro);color:var(--ash)}
+.footnote{font-size:var(--fs-micro);color:var(--ash);max-width:80ch;margin-top:1rem}
+
+/* ---------- design-system page ---------- */
+.ds-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (min-width:700px){.ds-grid{grid-template-columns:repeat(4,1fr)}}
+.swatch{background:var(--ink);padding:1rem;display:grid;gap:.6rem}
+.swatch i{display:block;height:84px;border-radius:var(--r);border:1px solid var(--line)}
+.swatch b{font-weight:600}
+.swatch code,.ds code{font-size:.8rem;color:var(--ash);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ds-row{display:grid;gap:1rem;padding-block:1.4rem;border-bottom:1px solid var(--line)}
+@media (min-width:760px){.ds-row{grid-template-columns:220px 1fr;align-items:center}}
+.ds-row > span:first-child{font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--ash)}
+.ds-demo{display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center}
+.ds-space{display:flex;align-items:flex-end;gap:1rem;flex-wrap:wrap}
+.ds-space i{display:block;background:var(--cyan);border-radius:2px}
+.ds-halftone{height:160px;border:1px solid var(--line);border-radius:var(--r);background:var(--halftone);-webkit-mask-image:radial-gradient(ellipse at center,transparent 25%,#000 85%);mask-image:radial-gradient(ellipse at center,transparent 25%,#000 85%)}
+.ds .frame{min-height:340px}
+
+/* ---------- motion ---------- */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+    @keyframes rise{from{opacity:.35;transform:translateY(28px)}to{opacity:1;transform:none}}
+  }
+}
+@media (prefers-reduced-motion:no-preference){
+  .frame-copy{animation:enter 1s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes enter{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+}
+
+/* ================= alive landing (homepage) =================
+   Motion uses transform and opacity only. Scroll-linked effects are CSS scroll timelines
+   behind @supports; without support the page is simply static. */
+[id]{scroll-margin-top:84px}
+
+/* scroll progress */
+.scroll-progress{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:2px;z-index:70;background:var(--cyan);transform:scaleX(0);transform-origin:0 50%;pointer-events:none;display:none}
+@supports (animation-timeline:scroll()){
+  .scroll-progress{display:block;animation:progress linear both;animation-timeline:scroll(root)}
+  @keyframes progress{to{transform:scaleX(1)}}
+}
+
+/* split hero */
+.frame--split{place-items:stretch;padding:clamp(4.5rem,8vw,6rem) clamp(16px,4vw,56px) clamp(5rem,8vw,6rem)}
+.frame-glow{position:absolute;z-index:-1;width:70%;aspect-ratio:1;right:-15%;top:-20%;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(226,58,58,.22),rgba(242,154,74,.08) 45%,transparent 70%);animation:glow 16s ease-in-out infinite alternate}
+@keyframes glow{to{transform:translate3d(-12%,14%,0) scale(1.15)}}
+.hero-split{display:grid;gap:clamp(2.5rem,5vw,4rem);align-items:center;width:100%}
+@media (min-width:960px){.hero-split{grid-template-columns:1.05fr 1fr}}
+.hero-text{display:grid;gap:1.4rem;justify-items:start}
+.hero-text .display{text-align:left}
+.hero-text .hero-actions{justify-content:flex-start}
+.scribbled{position:relative;display:inline-block}
+.scribble{position:absolute;left:-2%;bottom:-.12em;width:104%;height:.26em;color:var(--cyan);overflow:visible;transform-origin:0 50%;animation:draw 1.1s .5s cubic-bezier(.65,0,.35,1) both}
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+.hero-shot{position:relative;margin:0;padding-bottom:clamp(2.5rem,5vw,3.5rem)}
+.hero-shot-media{position:relative;overflow:hidden;border-radius:var(--r-frame);aspect-ratio:5/4;max-width:100%;
+  background:radial-gradient(80% 70% at 60% 45%,#F29A4A 0%,#C8432F 38%,#5A1C1A 72%,#1A0F0E 100%)}
+.hero-shot-media::after{content:"";position:absolute;inset:0;background:var(--halftone);opacity:.35;-webkit-mask-image:radial-gradient(ellipse at center,transparent 35%,#000 95%);mask-image:radial-gradient(ellipse at center,transparent 35%,#000 95%);pointer-events:none}
+.hero-img{position:absolute;left:5%;top:14%;width:92%;height:auto;transform:rotate(-8deg);filter:drop-shadow(0 30px 24px rgba(0,0,0,.45))}
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .hero-img{animation:parallax linear both;animation-timeline:scroll(root);animation-range:0 700px}
+    @keyframes parallax{from{transform:rotate(-8deg) translate3d(0,0,0)}to{transform:rotate(-6deg) translate3d(0,-60px,0)}}
+  }
+}
+.book-card{position:absolute;left:clamp(-12px,-2vw,-28px);bottom:0;width:min(300px,82%);display:grid;gap:.9rem;padding:1.1rem 1.2rem 1.2rem;
+  background:color-mix(in srgb,var(--carbon) 88%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border:1px solid var(--line-strong);border-radius:var(--r-frame);box-shadow:0 24px 50px -20px rgba(0,0,0,.8);animation:bob 6s ease-in-out infinite}
+.book-card .btn{justify-content:center}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.hero-index{display:none;gap:1.1rem}
+@media (min-width:860px){.hero-index{display:flex}}
+
+/* live primary button: pulse ring, periodic shine, sparkle on hover */
+.btn--live{position:relative;isolation:isolate}
+.btn--live::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;box-shadow:0 0 0 2px var(--cyan);opacity:0;animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.55}70%,100%{transform:scale(1.18,1.4);opacity:0}}
+.btn-shine{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none}
+.btn-shine::before{content:"";position:absolute;top:0;bottom:0;width:40%;left:0;background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);transform:translateX(-120%) skewX(-12deg);animation:shine 4.5s ease-in-out infinite}
+@keyframes shine{0%,62%{transform:translateX(-120%) skewX(-12deg)}86%,100%{transform:translateX(320%) skewX(-12deg)}}
+.btn-label{position:relative}
+.spark{position:absolute;right:-7px;top:-9px;width:16px;height:16px;color:var(--cyan);opacity:0;transform:scale(.3) rotate(-30deg);transition:opacity .25s,transform .35s cubic-bezier(.2,.7,.2,1.4);pointer-events:none}
+.spark svg{width:100%;height:100%}
+.btn--live:hover .spark{opacity:1;transform:scale(1) rotate(15deg)}
+
+/* checklists with draw-on checks (a wipe, transform only) */
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:.7rem}
+.checks li{display:flex;gap:.7rem;align-items:flex-start;color:var(--bone);line-height:1.45}
+.checks li strong{font-weight:600}
+.check{flex:none;width:20px;height:20px;margin-top:.1rem;border-radius:50%;background:color-mix(in srgb,var(--cyan) 16%,transparent);color:var(--cyan);display:grid;place-items:center;overflow:hidden}
+.check svg{width:13px;height:13px}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .check svg{animation:wipe linear both;animation-timeline:view();animation-range:entry 30% entry 90%}
+    @keyframes wipe{from{transform:translateX(-120%)}to{transform:none}}
+  }
+}
+.book-card .check svg{animation:wipe2 .6s .9s cubic-bezier(.65,0,.35,1) both}
+.book-card li:nth-child(2) .check svg{animation-delay:1.05s}
+.book-card li:nth-child(3) .check svg{animation-delay:1.2s}
+@keyframes wipe2{from{transform:translateX(-120%)}to{transform:none}}
+
+/* how it works */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (min-width:760px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{background:var(--ink);padding:clamp(1.5rem,3vw,2rem);display:grid;gap:.8rem;align-content:start;position:relative;transition:background-color .3s}
+.step:hover{background:var(--carbon)}
+.step-ico{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:var(--on-cyan);background:var(--cyan);animation:bobicon 3.2s ease-in-out infinite;animation-delay:calc(var(--i) * -.8s)}
+.step-ico svg{width:22px;height:22px}
+@keyframes bobicon{50%{transform:translateY(-6px)}}
+.step-no{position:absolute;right:1.4rem;top:1.4rem;font-weight:800;font-size:2.2rem;line-height:1;color:transparent;-webkit-text-stroke:1px var(--line-strong)}
+.step p{color:var(--ash)}
+
+/* service tiers */
+.tiers .tier{gap:1rem}
+.tier-price{font-weight:800;font-size:1.6rem;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tier .checks li{color:var(--ash);font-size:.95rem}
+.tier--featured{position:relative;background:var(--carbon);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--cyan) 55%,transparent);z-index:1}
+.tier-flag{position:absolute;right:1.2rem;top:1.2rem;color:var(--cyan)}
+@media (prefers-reduced-motion:no-preference){
+  .tier--featured{animation:breathe 5s ease-in-out infinite}
+  @keyframes breathe{50%{transform:scale(1.015)}}
+  .tier--featured:hover{animation-play-state:paused}
+}
+.tier:hover{transform:translateY(-4px)}
+
+/* guarantee */
+.guarantee{background:radial-gradient(60% 80% at 90% 50%,color-mix(in srgb,var(--cyan) 7%,transparent),transparent 70%)}
+.guarantee-card{border:1px solid var(--line-strong);border-radius:var(--r-frame);padding:clamp(1.5rem,3vw,2.25rem);background:var(--carbon)}
+.guarantee-card .checks{gap:1.25rem}
+.guarantee-card .checks li{color:var(--ash)}
+.guarantee-card .checks strong{display:block;color:var(--bone)}
+
+/* faq (native details: works without JS) */
+.faq{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem 0;font-weight:600;font-size:1.08rem}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--cyan)}
+.faq-plus{position:relative;flex:none;width:16px;height:16px}
+.faq-plus::before,.faq-plus::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:currentColor;transition:transform .3s}
+.faq-plus::after{transform:rotate(90deg)}
+.faq-item[open] .faq-plus::after{transform:rotate(0)}
+.faq-item p{color:var(--ash);padding:0 0 1.4rem}
+@media (prefers-reduced-motion:no-preference){.faq-item[open] p{animation:enter .45s ease both}}
+
+/* sticky cta bar */
+.cta-bar{position:fixed;left:0;right:0;bottom:0;z-index:55;padding-bottom:env(safe-area-inset-bottom,0px);
+  background:color-mix(in srgb,var(--ink) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.cta-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:68px;padding-block:.6rem}
+.cta-row p{font-size:.92rem}
+.cta-row p span{color:var(--ash)}
+@media (max-width:560px){.cta-row p span{display:none}.cta-row .btn{padding:.85rem 1rem}}
+body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+
+/* hover lifts on cards (shared) */
+.card{transition:background-color .3s,transform .35s cubic-bezier(.2,.7,.2,1)}
+.card:hover{transform:translateY(-4px)}
+.feature{transition:background-color .3s,transform .35s cubic-bezier(.2,.7,.2,1)}
+.feature:hover{transform:translateY(-4px)}
+
+@media (prefers-reduced-motion:reduce){
+  .frame-glow,.book-card,.step-ico,.btn--live::after,.btn-shine::before,.scribble{animation:none!important}
+  .btn-shine{display:none}
+}
+/* fixes for the split hero */
+.display .scribbled{display:inline-block}
+.frame--split .display{font-size:clamp(2.5rem,5.4vw,5rem)}
+.btn{white-space:nowrap}
+@media (max-width:700px){
+  .frame--split .corner.tr{display:none}
+  .book-card{left:12px}
+  .cta-row p{font-size:.85rem}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+<header class="site-head"><div class="wrap head-row">
+<a class="brand" href="./" aria-label="Yavuz Foot Locker, úvod"><span>Yavuz</span><span>Foot Locker</span></a>
+<nav aria-label="Hlavní navigace"><ul class="nav"><li><a class="bracket" href="kolekce.html">Kolekce</a></li><li><a class="bracket" href="releasy.html">Releasy</a></li><li><a class="bracket" href="sluzby.html">Služby</a></li><li><a class="bracket" href="o-nas.html">O nás</a></li><li class="sep" aria-hidden="true"></li><li><a class="bracket" href="kontakt.html">Kontakt</a></li></ul>
+<details class="menu"><summary class="bracket">Menu</summary><div class="menu-panel"><a class="bracket" href="./">Úvod</a><a class="bracket" href="kolekce.html">Kolekce</a><a class="bracket" href="releasy.html">Releasy</a><a class="bracket" href="sluzby.html">Služby</a><a class="bracket" href="o-nas.html">O nás</a><a class="bracket" href="kontakt.html">Kontakt</a></div></details></nav>
+</div></header>
+<main id="obsah">
+<div class="scroll-progress" aria-hidden="true"></div>
+<section class="frame-hero" id="top"><div class="frame frame--split">
+<span class="frame-glow" aria-hidden="true"></span>
+<span class="corner tl micro">Jordan Corner</span><span class="corner tr micro">Brno · Masarykova 21</span>
+<div class="hero-split">
+<div class="hero-text">
+<h1 class="display"><span><span class="hl scribbled">Létání<svg class="scribble" viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 15 C 40 6, 70 20, 110 12 S 180 4, 220 13 S 270 18, 296 9" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></span> se dá</span><span>naučit.</span><span class="serif">Air Jordan od roku 1985</span></h1>
+<p class="lead">Air Jordan v Brně. Retro klasiky, nové releasy a každý pár s ověřenou pravostí. Vyzkoušíš si ho dřív, než zaplatíš.</p>
+<div class="hero-actions"><a class="btn btn--live" href="kontakt.html#objednavka"><span class="btn-shine" aria-hidden="true"></span><span class="btn-label">Rezervovat pár</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="spark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill="currentColor"/></svg></span></a><a class="btn btn--ghost" href="kolekce.html">Prohlédnout kolekci</a></div>
+</div>
+<figure class="hero-shot">
+<div class="hero-shot-media"><img class="hero-img" src="photos/aj1-chicago.webp" alt="Air Jordan 1 Retro High OG Chicago, boční pohled" width="1400" height="788" fetchpriority="high"></div>
+<aside class="book-card" aria-label="Rezervace k vyzkoušení">
+<p class="micro">Rezervace k vyzkoušení</p>
+<ul class="checks"><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Vyber model a velikost</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Připravíme ho v prodejně</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Platíš až při vyzvednutí</span></li></ul>
+<a class="btn" href="kontakt.html#objednavka">Rezervovat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</aside>
+</figure>
+</div>
+<nav class="corner bl hero-index" aria-label="Sekce úvodu"><a class="bracket" href="#kolekce">Kolekce</a><a class="bracket" href="#jak">Jak to funguje</a><a class="bracket" href="#zaruka">Bez rizika</a><a class="bracket" href="#otazky">Otázky</a></nav>
+<a class="corner br bracket" href="#release">Scroll</a>
+</div></section>
+
+<section class="section" id="release" style="padding-block:clamp(2.5rem,6vw,4rem)"><div class="wrap">
+<article class="release reveal" aria-label="Release týdne">
+<img src="photos/aj4-bred.webp" alt="Air Jordan 4 Retro Bred, boční pohled" width="1400" height="788" loading="lazy">
+<div class="release-copy"><p class="eyebrow">Release týdne</p><h2>Air Jordan 4 <em>„Bred“</em></h2>
+<ul class="specs"><li><b>1989</b><span>první release</span></li><li><b>EU 40–45</b><span>velikosti</span></li></ul>
+<div class="hero-actions" style="justify-content:flex-start"><span class="price" style="align-self:center;margin-right:1rem">5 499 Kč</span><a class="btn" href="detail.html#aj4">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="more" href="releasy.html" style="align-self:center">Release kalendář <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+</article></div></section>
+
+<section class="section" id="kolekce"><div class="wrap">
+<div class="sec-head reveal"><div><p class="eyebrow">Jordan kolekce 2026</p><h2>Tři ikony, <br>které nikdy <em class="accent">nestárnou</em></h2></div>
+<div class="side"><p class="lead">Nejžádanější retro modely v prodejně. Všechny skladem ve velikostech EU 40 až 45 a každý pár s certifikátem pravosti.</p><a class="more" href="kolekce.html">Celá kolekce, 4 modely <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+<div class="grid"><article class="card reveal" id="aj1">
+<a href="detail.html#aj1" class="card-media" aria-label="Detail modelu Air Jordan 1 Retro High OG „Chicago“"><figure style="--tint:#E23A3A"><img src="photos/aj1-chicago.webp" alt="Air Jordan 1 Retro High OG „Chicago“, boční pohled" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Retro</span><span>od 1985</span><span>hlazená kůže</span></div>
+<h3><a href="detail.html#aj1" class="card-link">Air Jordan 1 Retro High OG „Chicago“</a></h3>
+<p>Bota, kterou to celé začalo. Červená, bílá a černá v plné kůži a vysoký kotník, jak ho nosila hala v roce 1985.</p>
+<div class="card-foot"><div><div class="price">4 999 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#aj1" aria-label="Kup To: Air Jordan 1 Retro High OG „Chicago“">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="aj4">
+<a href="detail.html#aj4" class="card-media" aria-label="Detail modelu Air Jordan 4 Retro „Bred“"><figure style="--tint:#B21E2B"><img src="photos/aj4-bred.webp" alt="Air Jordan 4 Retro „Bred“, boční pohled" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Retro</span><span>od 1989</span><span>6 barev</span></div>
+<h3><a href="detail.html#aj4" class="card-link">Air Jordan 4 Retro „Bred“</a></h3>
+<p>Kůže, síťované panely a viditelná Air jednotka v patě. Skladem v 6 barvách, od Bred po White Cement.</p>
+<div class="card-foot"><div><div class="price">5 499 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#aj4" aria-label="Kup To: Air Jordan 4 Retro „Bred“">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="aj11">
+<a href="detail.html#aj11" class="card-media" aria-label="Detail modelu Air Jordan 11 Retro „Concord“"><figure style="--tint:#6B5BA8"><img src="photos/aj11-concord.webp" alt="Air Jordan 11 Retro „Concord“, boční pohled" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Retro</span><span>od 1995</span><span>3 barvy</span></div>
+<h3><a href="detail.html#aj11" class="card-link">Air Jordan 11 Retro „Concord“</a></h3>
+<p>Lakovaná kůže, která se leskne i pod světly palubovky. Nejelegantnější Jordanka všech dob.</p>
+<div class="card-foot"><div><div class="price">5 999 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#aj11" aria-label="Kup To: Air Jordan 11 Retro „Concord“">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article></div>
+</div></section>
+
+<section class="section" id="jak"><div class="wrap">
+<div class="sec-head reveal"><div><p class="eyebrow">Jak to funguje</p><h2>Od výběru <br>po <em class="accent">první krok</em></h2></div>
+<div class="side"><p class="lead">Online si vybereš, v prodejně si vyzkoušíš. Čtyři kroky, žádná platba předem.</p></div></div>
+<ol class="steps"><li class="step reveal"><span class="step-ico" style="--i:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21c-2.5 0-3.5-2-3.5-4.5S6 11 6 8.5 7 3 9.5 3 13 5.5 12.5 9 10.5 14 10.5 16.5 10.5 21 8 21z"/><circle cx="15.5" cy="4.5" r="1.2"/><circle cx="18" cy="7" r="1"/><circle cx="19" cy="10" r=".9"/><path d="M4.5 16.5h6"/></svg></span><span class="step-no num">01</span><h3>Vyber pár</h3><p>Projdi kolekci nebo detail boty a vyber model, barvu a velikost.</p></li><li class="step reveal"><span class="step-ico" style="--i:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="step-no num">02</span><h3>Rezervuj</h3><p>Napiš nám přes formulář nebo e-mail. Pár ti podržíme 3 dny zdarma.</p></li><li class="step reveal"><span class="step-ico" style="--i:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4z"/><path d="m3 7 9 4 9-4M12 11v10"/></svg></span><span class="step-no num">03</span><h3>Vyzkoušej</h3><p>V prodejně na Masarykově ti boty připravíme. Obuješ si je a projdeš se v nich.</p></li><li class="step reveal"><span class="step-ico" style="--i:3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><span class="step-no num">04</span><h3>Zaplať a odnes</h3><p>Platíš až při vyzvednutí, a jen když ti bota sedí. Certifikát pravosti dostaneš k páru.</p></li></ol>
+</div></section>
+
+<section class="section" id="o-nas"><div class="wrap split">
+<div class="reveal" style="display:grid;gap:1.5rem;justify-items:start"><p class="eyebrow">Kdo jsme</p><h2>Obchod, který <em class="accent">žije</em> sneakery</h2></div>
+<div class="reveal" style="display:grid;gap:1.5rem;justify-items:start"><p class="lead">Prodejna se specializací na Air Jordan, s ověřováním pravosti, péčí o boty a releasy, na které se stojí fronta. Radíme s velikostí i s výběrem barvy.</p>
+<a class="more" href="o-nas.html">O nás <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></section>
+
+<section class="section" id="sluzby"><div class="wrap">
+<div class="sec-head reveal"><div><p class="eyebrow">Služby v prodejně</p><h2>Víc než <br>krabice s botami</h2></div>
+<div class="side"><p class="lead">Pravost, péče a klub. Ceny platí pro jeden pár.</p><a class="more" href="sluzby.html">Všechny služby <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+<div class="features tiers">
+<a class="feature tier reveal" href="sluzby.html#pece" style="text-decoration:none"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h7l9-9-7-7-9 9z"/><path d="M8 16l3-3M14 4l6 6"/></svg></span><h3>Restaurace</h3><span class="tier-price">od 490 Kč</span>
+<ul class="checks"><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Hloubkové čištění</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Deoxidace zažloutlých podrážek</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Oprava laku, hotovo do 5 dnů</span></li></ul></a>
+<a class="feature tier tier--featured reveal" href="sluzby.html#legit" style="text-decoration:none"><span class="tier-flag micro">Nejčastější</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><h3>Ověření pravosti</h3><span class="tier-price">390 Kč</span>
+<ul class="checks"><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Kontrola podle 27 bodů pod UV lampou</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Srovnání s referenčním párem</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Certifikát s fotkami, na počkání</span></li></ul></a>
+<a class="feature tier reveal" href="sluzby.html#klub" style="text-decoration:none"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><h3>Klub Yavuz</h3><span class="tier-price">zdarma</span>
+<ul class="checks"><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>5 % z každého nákupu zpět</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Dvojitá šance v raffle</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>20 % sleva na ověření a restauraci</span></li></ul></a>
+</div></div></section>
+
+<section class="section guarantee" id="zaruka"><div class="wrap split">
+<div class="reveal" style="display:grid;gap:1.5rem;justify-items:start"><p class="eyebrow">Bez rizika</p><h2>Když bota nesedí, <em class="accent">nekupuješ ji</em></h2>
+<p class="lead">Nic neplatíš předem. Pár si rezervuješ, vyzkoušíš v prodejně a zaplatíš, jen když je přesně ten pravý. Pravost máš černé na bílém.</p>
+<a class="btn btn--live" href="kontakt.html#objednavka"><span class="btn-shine" aria-hidden="true"></span><span class="btn-label">Rezervovat pár</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="spark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill="currentColor"/></svg></span></a></div>
+<div class="guarantee-card reveal">
+<ul class="checks"><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span><strong>Vyzkoušíš před placením.</strong> Obuješ si je v prodejně, projdeš se, porovnáš velikosti.</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span><strong>Platíš až při vyzvednutí.</strong> Rezervace ani odložení páru nic nestojí.</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span><strong>Odložení na 3 dny zdarma.</strong> Pár ti podržíme, ať máš čas dojet.</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span><strong>Certifikát pravosti ke každému páru.</strong> Ověřeno podle 27 bodů s fotkami.</span></li></ul>
+</div></div></section>
+
+<section class="section" id="otazky"><div class="wrap split">
+<div class="reveal" style="display:grid;gap:1.25rem;justify-items:start"><p class="eyebrow">Časté otázky</p><h2>Na co se <br><em class="accent">ptáte</em> nejčastěji</h2>
+<p class="lead">Nenašel jsi odpověď? Napiš nám přes kontaktní formulář.</p><a class="more" href="kontakt.html">Kontakt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<div class="faq reveal"><details class="faq-item" open><summary><span>Jsou boty originální?</span><span class="faq-plus" aria-hidden="true"></span></summary><p>Ano. Každý pár, který projde pultem, prochází naším ověřením pravosti podle 27 bodů: šití, lepení, materiály, štítky i krabice, porovnané s referenčními páry. K páru dostaneš certifikát s fotkami.</p></details><details class="faq-item"><summary><span>Co když mi velikost nesedí?</span><span class="faq-plus" aria-hidden="true"></span></summary><p>Retro Jordanky jsou střižené užší, proto doporučujeme přičíst k délce chodidla 0,5 cm (u AJ11 o půl čísla víc). Hlavně si ale boty v prodejně vyzkoušíš dřív, než zaplatíš. Když nesedí, nekupuješ je.</p></details><details class="faq-item"><summary><span>Musím platit předem?</span><span class="faq-plus" aria-hidden="true"></span></summary><p>Ne. Rezervace i odložení páru na 3 dny jsou zdarma a platba proběhne až při vyzvednutí v prodejně.</p></details><details class="faq-item"><summary><span>Je raffle férový?</span><span class="faq-plus" aria-hidden="true"></span></summary><p>Limitované páry losujeme, jeden pár na osobu, a nedržíme je pro přeprodejce. Přihlásit se můžeš v prodejně nebo formulářem.</p></details></div>
+</div></section>
+
+<section class="section band" id="kontakt"><div class="wrap band-grid">
+<div class="reveal"><p class="eyebrow">Prodejna v centru Brna</p><h2>Přijď si <em class="accent">obout</em> ikonu</h2>
+<p class="lead">Napiš, který model a velikost chceš, a připravíme ho k vyzkoušení.</p>
+<div class="hero-actions" style="justify-content:flex-start"><a class="btn" href="kontakt.html">Kontakt a rezervace <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--ghost" href="kontakt.html#mapa">Ukázat na mapě</a></div></div>
+<ul class="facts reveal">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><div><strong>Masarykova 21, 602 00 Brno</strong><br>3 minuty pěšky z hlavního nádraží</div></li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><strong>Po–Pá 9:00–19:00</strong><br>So 9:00–14:00 · Ne zavřeno</div></li>
+</ul></div></section>
+
+<div class="cta-bar" role="region" aria-label="Rezervace">
+<div class="wrap cta-row"><p><strong>Rezervuj pár k vyzkoušení.</strong> <span>Platíš až při vyzvednutí.</span></p>
+<a class="btn btn--live" href="kontakt.html#objednavka"><span class="btn-shine" aria-hidden="true"></span><span class="btn-label">Rezervovat pár</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="spark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill="currentColor"/></svg></span></a></div></div>
+
+
+</main>
+<footer class="site-foot"><div class="wrap">
+<div class="foot-grid">
+<div><a class="brand" href="./" style="font-size:1.6rem"><span>Yavuz</span><span>Foot Locker</span></a>
+<p class="lead" style="margin-top:1rem;font-size:1rem">Specialista na Air Jordan v Brně. Releasy, retro modely a ověřená pravost každého páru.</p></div>
+<div><h4>Obchod</h4><ul><li><a href="kolekce.html">Kolekce</a></li><li><a href="kolekce.html#aj1">Air Jordan 1</a></li><li><a href="kolekce.html#basket">Basketbal</a></li><li><a href="kolekce.html#aj11">Air Jordan 11</a></li></ul></div>
+<div><h4>Služby</h4><ul><li><a href="sluzby.html#legit">Ověření pravosti</a></li><li><a href="releasy.html">Release kalendář</a></li><li><a href="sluzby.html#raffle">Raffle a releasy</a></li><li><a href="sluzby.html#pece">Restaurace</a></li><li><a href="sluzby.html#klub">Klub Yavuz</a></li></ul></div>
+<div><h4>Prodejna</h4><ul><li>Masarykova 21, Brno</li><li>Po–Pá 9:00–19:00</li><li>So 9:00–14:00</li><li><a href="kontakt.html">Kontakt a mapa</a></li><li><a href="design-system.html">Design systém</a></li></ul></div>
+</div>
+<div class="wordmark" aria-hidden="true">Yavuz Foot Locker</div>
+<div class="legal"><span>© 2026 Yavuz Foot Locker</span><span>Ceny jsou uvedeny včetně DPH.</span></div>
+<p class="footnote">Yavuz Foot Locker je nezávislý prodejce. Nike, Jordan a Air Jordan jsou ochranné známky společnosti Nike, Inc.</p>
+</div></footer>
+</body>
+</html>
