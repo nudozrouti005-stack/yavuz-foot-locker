@@ -417,6 +417,22 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   .book-card{left:12px}
   .cta-row p{font-size:.85rem}
 }
+/* grids with a leftover cell: hairlines on the cards instead of a filled background */
+.grid{background:transparent;gap:0;border:0}
+.grid > .card{outline:1px solid var(--line);outline-offset:-.5px}
+.sale{display:inline-block;vertical-align:middle;margin-left:.4rem;padding:.2rem .45rem;border-radius:3px;background:var(--cyan);color:var(--on-cyan);font-size:.72rem;font-weight:800;letter-spacing:.04em}
+
+/* hero photo (own AI image): cover the media box; the warm gradient behind stays as fallback */
+.hero-shot-media--photo{aspect-ratio:3/2}
+.hero-photo{position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover;display:block}
+.hero-shot-media--photo::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(11,11,12,.55))}
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .hero-photo{animation:parallax-photo linear both;animation-timeline:scroll(root);animation-range:0 700px}
+    @keyframes parallax-photo{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-36px,0)}}
+  }
+}
+.book-card{z-index:2}
 </style>
 </head>
 <body>
@@ -446,14 +462,14 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <footer class="site-foot"><div class="wrap">
 <div class="foot-grid">
 <div><a class="brand" href="./" style="font-size:1.6rem"><span>Yavuz</span><span>Foot Locker</span></a>
-<p class="lead" style="margin-top:1rem;font-size:1rem">Specialista na Air Jordan v Brně. Releasy, retro modely a ověřená pravost každého páru.</p></div>
-<div><h4>Obchod</h4><ul><li><a href="kolekce.html">Kolekce</a></li><li><a href="kolekce.html#aj1">Air Jordan 1</a></li><li><a href="kolekce.html#basket">Basketbal</a></li><li><a href="kolekce.html#aj11">Air Jordan 11</a></li></ul></div>
+<p class="lead" style="margin-top:1rem;font-size:1rem">Air Jordan a Nike v Brně. Releasy, retro modely a ověřená pravost každého páru.</p></div>
+<div><h4>Obchod</h4><ul><li><a href="kolekce.html">Kolekce</a></li><li><a href="kolekce.html#aj1">Air Jordan 1</a></li><li><a href="kolekce.html#basket">Basketbal</a></li><li><a href="kolekce.html#nike">Nike</a></li></ul></div>
 <div><h4>Služby</h4><ul><li><a href="sluzby.html#legit">Ověření pravosti</a></li><li><a href="releasy.html">Release kalendář</a></li><li><a href="sluzby.html#raffle">Raffle a releasy</a></li><li><a href="sluzby.html#pece">Restaurace</a></li><li><a href="sluzby.html#klub">Klub Yavuz</a></li></ul></div>
 <div><h4>Prodejna</h4><ul><li>Masarykova 21, Brno</li><li>Po–Pá 9:00–19:00</li><li>So 9:00–14:00</li><li><a href="kontakt.html">Kontakt a mapa</a></li><li><a href="design-system.html">Design systém</a></li></ul></div>
 </div>
 <div class="wordmark" aria-hidden="true">Yavuz Foot Locker</div>
 <div class="legal"><span>© 2026 Yavuz Foot Locker</span><span>Ceny jsou uvedeny včetně DPH.</span></div>
-<p class="footnote">Yavuz Foot Locker je nezávislý prodejce. Nike, Jordan a Air Jordan jsou ochranné známky společnosti Nike, Inc.</p>
+<p class="footnote">Yavuz Foot Locker je nezávislý prodejce. Nike, Jordan a Air Jordan jsou ochranné známky společnosti Nike, Inc. Obrázky bot jsou orientační ilustrace, fotky z prodejny brzy doplníme.</p>
 </div></footer>
 </body>
 </html>

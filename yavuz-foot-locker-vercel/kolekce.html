@@ -417,6 +417,22 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   .book-card{left:12px}
   .cta-row p{font-size:.85rem}
 }
+/* grids with a leftover cell: hairlines on the cards instead of a filled background */
+.grid{background:transparent;gap:0;border:0}
+.grid > .card{outline:1px solid var(--line);outline-offset:-.5px}
+.sale{display:inline-block;vertical-align:middle;margin-left:.4rem;padding:.2rem .45rem;border-radius:3px;background:var(--cyan);color:var(--on-cyan);font-size:.72rem;font-weight:800;letter-spacing:.04em}
+
+/* hero photo (own AI image): cover the media box; the warm gradient behind stays as fallback */
+.hero-shot-media--photo{aspect-ratio:3/2}
+.hero-photo{position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover;display:block}
+.hero-shot-media--photo::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(11,11,12,.55))}
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .hero-photo{animation:parallax-photo linear both;animation-timeline:scroll(root);animation-range:0 700px}
+    @keyframes parallax-photo{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-36px,0)}}
+  }
+}
+.book-card{z-index:2}
 </style>
 </head>
 <body>
@@ -428,12 +444,13 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 </div></header>
 <main id="obsah"><section class="frame-hero frame-hero--page"><div class="frame">
 <span class="corner tl micro">Yavuz Foot Locker</span><span class="corner tr micro">Brno · CZ</span>
-<div class="frame-copy"><p class="eyebrow">Jordan kolekce 2026</p><h1 class="display"><span>Čtyři ikony</span><span><span class="accent">od roku 1985</span></span></h1><p class="lead">Retro klasiky a moderní basketbal. Každý pár prošel naším ověřením pravosti a je skladem v prodejně na Masarykově.</p></div>
+<div class="frame-copy"><p class="eyebrow">Jordan kolekce 2026</p><h1 class="display"><span>Jordan</span><span><span class="accent">a Nike</span></span></h1><p class="lead">Retro Jordanky, sneakery Nike do města, běžecké boty i regenerace. Každý pár prošel naším ověřením pravosti a je skladem v prodejně na Masarykově.</p></div>
 <a class="corner br bracket" href="#obsah-dal">Scroll</a></div></section><span id="obsah-dal"></span>
 <section class="section" id="kolekce-vse"><div class="wrap">
-<nav class="chips" aria-label="Kategorie"><a class="on" href="#kolekce-vse">Vše (4)</a><a href="#aj1">Air Jordan 1</a><a href="#aj4">Air Jordan 4</a><a href="#aj11">Air Jordan 11</a><a href="#basket">Luka 3</a></nav>
+<nav class="chips" aria-label="Kategorie"><a class="on" href="#kolekce-vse">Vše (18)</a><a href="#jordan">Jordan (7)</a><a href="#nike">Nike (11)</a><a href="#aj1">Air Jordan 1</a><a href="#aj4">Air Jordan 4</a><a href="#aj11">Air Jordan 11</a><a href="#basket">Luka 3</a><a href="#spizike">Spizike Low</a><a href="#aj1-mid">AJ1 Mid</a><a href="#aj1-mid-se">AJ1 Mid SE</a><a href="#af1">Air Force 1</a><a href="#af1-gtx">AF1 GORE-TEX</a><a href="#dunk">Dunk Low Retro</a><a href="#dunk-gtx">Dunk GORE-TEX</a><a href="#p6000">P-6000</a><a href="#am90">Air Max 90</a><a href="#vomero">Vomero 18</a><a href="#pegasus">Pegasus Premium</a><a href="#flextrain">Flex Train</a><a href="#mind001">Mind 001</a><a href="#hyperboot">Hyperboot</a></nav>
+<h2 id="jordan" style="margin:0 0 1.5rem">Jordan</h2>
 <div class="grid"><article class="card reveal" id="aj1">
-<a href="detail.html#aj1" class="card-media" aria-label="Detail modelu Air Jordan 1 Retro High OG „Chicago“"><figure style="--tint:#E23A3A"><img src="photos/aj1-chicago.webp" alt="Air Jordan 1 Retro High OG „Chicago“, boční pohled" loading="lazy" width="1400" height="788"></figure></a>
+<a href="detail.html#aj1" class="card-media" aria-label="Detail modelu Air Jordan 1 Retro High OG „Chicago“"><figure style="--tint:#E23A3A"><img src="illus/aj1-chicago.svg" alt="Air Jordan 1 Retro High OG „Chicago“, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
 <div class="card-body">
 <div class="meta"><span>Retro</span><span>od 1985</span><span>hlazená kůže</span></div>
 <h3><a href="detail.html#aj1" class="card-link">Air Jordan 1 Retro High OG „Chicago“</a></h3>
@@ -441,15 +458,15 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <div class="card-foot"><div><div class="price">4 999 Kč</div><div class="sizes">EU 40–45</div></div>
 <a class="btn" href="detail.html#aj1" aria-label="Kup To: Air Jordan 1 Retro High OG „Chicago“">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 </div></article><article class="card reveal" id="aj4">
-<a href="detail.html#aj4" class="card-media" aria-label="Detail modelu Air Jordan 4 Retro „Bred“"><figure style="--tint:#B21E2B"><img src="photos/aj4-bred.webp" alt="Air Jordan 4 Retro „Bred“, boční pohled" loading="lazy" width="1400" height="788"></figure></a>
+<a href="detail.html#aj4" class="card-media" aria-label="Detail modelu Air Jordan 4 Retro „Bred“"><figure style="--tint:#B21E2B"><img src="illus/aj4-bred.svg" alt="Air Jordan 4 Retro „Bred“, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
 <div class="card-body">
-<div class="meta"><span>Retro</span><span>od 1989</span><span>6 barev</span></div>
+<div class="meta"><span>Retro</span><span>od 1989</span><span>8 barev</span></div>
 <h3><a href="detail.html#aj4" class="card-link">Air Jordan 4 Retro „Bred“</a></h3>
-<p>Kůže, síťované panely a viditelná Air jednotka v patě. Skladem v 6 barvách, od Bred po White Cement.</p>
+<p>Kůže, síťované panely a viditelná Air jednotka v patě. Skladem v 8 barvách, od Bred po Tour Yellow.</p>
 <div class="card-foot"><div><div class="price">5 499 Kč</div><div class="sizes">EU 40–45</div></div>
 <a class="btn" href="detail.html#aj4" aria-label="Kup To: Air Jordan 4 Retro „Bred“">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 </div></article><article class="card reveal" id="aj11">
-<a href="detail.html#aj11" class="card-media" aria-label="Detail modelu Air Jordan 11 Retro „Concord“"><figure style="--tint:#6B5BA8"><img src="photos/aj11-concord.webp" alt="Air Jordan 11 Retro „Concord“, boční pohled" loading="lazy" width="1400" height="788"></figure></a>
+<a href="detail.html#aj11" class="card-media" aria-label="Detail modelu Air Jordan 11 Retro „Concord“"><figure style="--tint:#6B5BA8"><img src="illus/aj11-concord.svg" alt="Air Jordan 11 Retro „Concord“, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
 <div class="card-body">
 <div class="meta"><span>Retro</span><span>od 1995</span><span>3 barvy</span></div>
 <h3><a href="detail.html#aj11" class="card-link">Air Jordan 11 Retro „Concord“</a></h3>
@@ -457,13 +474,127 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <div class="card-foot"><div><div class="price">5 999 Kč</div><div class="sizes">EU 40–45</div></div>
 <a class="btn" href="detail.html#aj11" aria-label="Kup To: Air Jordan 11 Retro „Concord“">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 </div></article><article class="card reveal" id="basket">
-<a href="detail.html#basket" class="card-media" aria-label="Detail modelu Jordan Luka 3"><figure style="--tint:#1FB5C4"><img src="photos/luka3-teal.webp" alt="Jordan Luka 3, boční pohled" loading="lazy" width="1400" height="788"></figure></a>
+<a href="detail.html#basket" class="card-media" aria-label="Detail modelu Jordan Luka 3"><figure style="--tint:#1FB5C4"><img src="illus/luka3-teal.svg" alt="Jordan Luka 3, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
 <div class="card-body">
 <div class="meta"><span>Basketbal</span><span>2024</span><span>4 barvy</span></div>
 <h3><a href="detail.html#basket" class="card-link">Jordan Luka 3</a></h3>
 <p>Moderní hřišťová bota pro hráče, kteří mění směr v každé akci. Nízká, stabilní a rychlá.</p>
 <div class="card-foot"><div><div class="price">3 499 Kč</div><div class="sizes">EU 40–45</div></div>
 <a class="btn" href="detail.html#basket" aria-label="Kup To: Jordan Luka 3">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="spizike">
+<a href="detail.html#spizike" class="card-media" aria-label="Detail modelu Jordan Spizike Low"><figure style="--tint:#B21E2B"><img src="illus/nk-spizike-low.svg" alt="Jordan Spizike Low, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Lifestyle</span><span>Jordan Brand</span><span>4 barvy</span></div>
+<h3><a href="detail.html#spizike" class="card-link">Jordan Spizike Low</a></h3>
+<p>Hybrid z prvků několika retro Jordanek v nízkém střihu, s cementovým potiskem. Ve čtyřech barvách.</p>
+<div class="card-foot"><div><div class="price">2 491 Kč <span class="sale">−30 %</span></div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#spizike" aria-label="Kup To: Jordan Spizike Low">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="aj1-mid">
+<a href="detail.html#aj1-mid" class="card-media" aria-label="Detail modelu Air Jordan 1 Mid"><figure style="--tint:#C8102E"><img src="illus/nk-aj1-mid.svg" alt="Air Jordan 1 Mid, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Lifestyle</span><span>Jordan Brand</span><span>2 barvy</span></div>
+<h3><a href="detail.html#aj1-mid" class="card-link">Air Jordan 1 Mid</a></h3>
+<p>Silueta Air Jordan 1 ve střední výšce kotníku. Černá, bílá a červená Gym Red.</p>
+<div class="card-foot"><div><div class="price">3 499 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#aj1-mid" aria-label="Kup To: Air Jordan 1 Mid">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="aj1-mid-se">
+<a href="detail.html#aj1-mid-se" class="card-media" aria-label="Detail modelu Air Jordan 1 Mid SE"><figure style="--tint:#B9A88A"><img src="illus/nk-aj1-mid-se.svg" alt="Air Jordan 1 Mid SE, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Lifestyle</span><span>Jordan Brand</span><span>1 barva</span></div>
+<h3><a href="detail.html#aj1-mid-se" class="card-link">Air Jordan 1 Mid SE</a></h3>
+<p>Speciální edice Air Jordan 1 Mid. Krémová Sail s černými detaily.</p>
+<div class="card-foot"><div><div class="price">3 749 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#aj1-mid-se" aria-label="Kup To: Air Jordan 1 Mid SE">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article></div>
+<h2 id="nike" style="margin:clamp(3rem,7vw,5rem) 0 1.5rem">Nike</h2>
+<div class="grid"><article class="card reveal" id="af1">
+<a href="detail.html#af1" class="card-media" aria-label="Detail modelu Nike Air Force 1"><figure style="--tint:#9EA3AE"><img src="illus/nk-af1-lv8.svg" alt="Nike Air Force 1, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Lifestyle</span><span>od 1982</span><span>4 barvy</span></div>
+<h3><a href="detail.html#af1" class="card-link">Nike Air Force 1</a></h3>
+<p>Basketbalová klasika z roku 1982 ve verzi ’07 LV8, Luxe a dalších barvách.</p>
+<div class="card-foot"><div><div class="price">1 881 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#af1" aria-label="Kup To: Nike Air Force 1">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="af1-gtx">
+<a href="detail.html#af1-gtx" class="card-media" aria-label="Detail modelu Nike Air Force 1 GORE-TEX Vibram"><figure style="--tint:#8A5A44"><img src="illus/nk-af1-gtx-vibram.svg" alt="Nike Air Force 1 GORE-TEX Vibram, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Lifestyle</span><span>nepromokavá</span><span>1 barva</span></div>
+<h3><a href="detail.html#af1-gtx" class="card-link">Nike Air Force 1 GORE-TEX Vibram</a></h3>
+<p>Air Force 1 v nepromokavém provedení GORE-TEX s podrážkou Vibram. Hnědá kůže do města i do mokra.</p>
+<div class="card-foot"><div><div class="price">3 884 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#af1-gtx" aria-label="Kup To: Nike Air Force 1 GORE-TEX Vibram">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="dunk">
+<a href="detail.html#dunk" class="card-media" aria-label="Detail modelu Nike Dunk Low Retro"><figure style="--tint:#8C8C8C"><img src="illus/nk-dunk-panda.svg" alt="Nike Dunk Low Retro, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Lifestyle</span><span>od 1985</span><span>6 barev</span></div>
+<h3><a href="detail.html#dunk" class="card-link">Nike Dunk Low Retro</a></h3>
+<p>Silueta z univerzitního basketu osmdesátých let. Klasická Panda a dalších pět barev.</p>
+<div class="card-foot"><div><div class="price">1 465 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#dunk" aria-label="Kup To: Nike Dunk Low Retro">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="dunk-gtx">
+<a href="detail.html#dunk-gtx" class="card-media" aria-label="Detail modelu Nike Dunk Low GORE-TEX"><figure style="--tint:#4A4A4F"><img src="illus/nk-dunk-gtx-black.svg" alt="Nike Dunk Low GORE-TEX, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Lifestyle</span><span>nepromokavá</span><span>3 barvy</span></div>
+<h3><a href="detail.html#dunk-gtx" class="card-link">Nike Dunk Low GORE-TEX</a></h3>
+<p>Celočerný Dunk Low v nepromokavém provedení GORE-TEX.</p>
+<div class="card-foot"><div><div class="price">2 394 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#dunk-gtx" aria-label="Kup To: Nike Dunk Low GORE-TEX">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="p6000">
+<a href="detail.html#p6000" class="card-media" aria-label="Detail modelu Nike P-6000"><figure style="--tint:#9EA3AE"><img src="illus/nk-p6000-silver.svg" alt="Nike P-6000, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Lifestyle</span><span>Nike</span><span>4 barvy</span></div>
+<h3><a href="detail.html#p6000" class="card-link">Nike P-6000</a></h3>
+<p>Běžecký vzhled přelomu tisíciletí: vrstvené panely, síťovina a lesklé detaily.</p>
+<div class="card-foot"><div><div class="price">2 931 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#p6000" aria-label="Kup To: Nike P-6000">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="am90">
+<a href="detail.html#am90" class="card-media" aria-label="Detail modelu Nike Air Max 90"><figure style="--tint:#D9C23A"><img src="illus/nk-airmax90-black.svg" alt="Nike Air Max 90, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Lifestyle</span><span>od 1990</span><span>3 barvy</span></div>
+<h3><a href="detail.html#am90" class="card-link">Nike Air Max 90</a></h3>
+<p>Viditelná jednotka Air v patě a tvar z roku 1990. Celočerná, Infrared i celobílá.</p>
+<div class="card-foot"><div><div class="price">2 198 Kč <span class="sale">−40 %</span></div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#am90" aria-label="Kup To: Nike Air Max 90">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="vomero">
+<a href="detail.html#vomero" class="card-media" aria-label="Detail modelu Nike Vomero 18"><figure style="--tint:#E2503A"><img src="illus/nk-vomero18.svg" alt="Nike Vomero 18, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Running</span><span>Nike</span><span>4 barvy</span></div>
+<h3><a href="detail.html#vomero" class="card-link">Nike Vomero 18</a></h3>
+<p>Silniční běžecká bota s měkkým odpružením ZoomX na dlouhé kilometry.</p>
+<div class="card-foot"><div><div class="price">2 344 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#vomero" aria-label="Kup To: Nike Vomero 18">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="pegasus">
+<a href="detail.html#pegasus" class="card-media" aria-label="Detail modelu Nike Pegasus Premium"><figure style="--tint:#8E8A88"><img src="illus/nk-pegasus-premium.svg" alt="Nike Pegasus Premium, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Running</span><span>Nike</span><span>4 barvy</span></div>
+<h3><a href="detail.html#pegasus" class="card-link">Nike Pegasus Premium</a></h3>
+<p>Silniční běžecká bota z řady Pegasus v prémiovém provedení.</p>
+<div class="card-foot"><div><div class="price">5 128 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#pegasus" aria-label="Kup To: Nike Pegasus Premium">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="flextrain">
+<a href="detail.html#flextrain" class="card-media" aria-label="Detail modelu Nike Flex Train"><figure style="--tint:#4A4A4F"><img src="illus/nk-flex-train.svg" alt="Nike Flex Train, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Trénink</span><span>Nike</span><span>4 barvy</span></div>
+<h3><a href="detail.html#flextrain" class="card-link">Nike Flex Train</a></h3>
+<p>Tréninková bota do posilovny a na cvičení.</p>
+<div class="card-foot"><div><div class="price">1 368 Kč <span class="sale">−30 %</span></div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#flextrain" aria-label="Kup To: Nike Flex Train">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="mind001">
+<a href="detail.html#mind001" class="card-media" aria-label="Detail modelu Nike Mind 001"><figure style="--tint:#4A4A4F"><img src="illus/nk-mind001.svg" alt="Nike Mind 001, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Regenerace</span><span>Nike</span><span>5 barev</span></div>
+<h3><a href="detail.html#mind001" class="card-link">Nike Mind 001</a></h3>
+<p>Nazouváky na rozehřátí a odpočinek před zápasem.</p>
+<div class="card-foot"><div><div class="price">2 198 Kč</div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#mind001" aria-label="Kup To: Nike Mind 001">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div></article><article class="card reveal" id="hyperboot">
+<a href="detail.html#hyperboot" class="card-media" aria-label="Detail modelu Nike x Hyperice Hyperboot"><figure style="--tint:#6E7F8E"><img src="illus/nk-hyperboot.svg" alt="Nike x Hyperice Hyperboot, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
+<div class="card-body">
+<div class="meta"><span>Regenerace</span><span>Nike x Hyperice</span><span>1 barva</span></div>
+<h3><a href="detail.html#hyperboot" class="card-link">Nike x Hyperice Hyperboot</a></h3>
+<p>Spolupráce Nike a Hyperice: kotníková obuv pro regeneraci.</p>
+<div class="card-foot"><div><div class="price">12 822 Kč <span class="sale">−30 %</span></div><div class="sizes">EU 40–45</div></div>
+<a class="btn" href="detail.html#hyperboot" aria-label="Kup To: Nike x Hyperice Hyperboot">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 </div></article></div>
 </div></section>
 <section class="section"><div class="wrap split">
@@ -474,14 +605,14 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <footer class="site-foot"><div class="wrap">
 <div class="foot-grid">
 <div><a class="brand" href="./" style="font-size:1.6rem"><span>Yavuz</span><span>Foot Locker</span></a>
-<p class="lead" style="margin-top:1rem;font-size:1rem">Specialista na Air Jordan v Brně. Releasy, retro modely a ověřená pravost každého páru.</p></div>
-<div><h4>Obchod</h4><ul><li><a href="kolekce.html">Kolekce</a></li><li><a href="kolekce.html#aj1">Air Jordan 1</a></li><li><a href="kolekce.html#basket">Basketbal</a></li><li><a href="kolekce.html#aj11">Air Jordan 11</a></li></ul></div>
+<p class="lead" style="margin-top:1rem;font-size:1rem">Air Jordan a Nike v Brně. Releasy, retro modely a ověřená pravost každého páru.</p></div>
+<div><h4>Obchod</h4><ul><li><a href="kolekce.html">Kolekce</a></li><li><a href="kolekce.html#aj1">Air Jordan 1</a></li><li><a href="kolekce.html#basket">Basketbal</a></li><li><a href="kolekce.html#nike">Nike</a></li></ul></div>
 <div><h4>Služby</h4><ul><li><a href="sluzby.html#legit">Ověření pravosti</a></li><li><a href="releasy.html">Release kalendář</a></li><li><a href="sluzby.html#raffle">Raffle a releasy</a></li><li><a href="sluzby.html#pece">Restaurace</a></li><li><a href="sluzby.html#klub">Klub Yavuz</a></li></ul></div>
 <div><h4>Prodejna</h4><ul><li>Masarykova 21, Brno</li><li>Po–Pá 9:00–19:00</li><li>So 9:00–14:00</li><li><a href="kontakt.html">Kontakt a mapa</a></li><li><a href="design-system.html">Design systém</a></li></ul></div>
 </div>
 <div class="wordmark" aria-hidden="true">Yavuz Foot Locker</div>
 <div class="legal"><span>© 2026 Yavuz Foot Locker</span><span>Ceny jsou uvedeny včetně DPH.</span></div>
-<p class="footnote">Yavuz Foot Locker je nezávislý prodejce. Nike, Jordan a Air Jordan jsou ochranné známky společnosti Nike, Inc.</p>
+<p class="footnote">Yavuz Foot Locker je nezávislý prodejce. Nike, Jordan a Air Jordan jsou ochranné známky společnosti Nike, Inc. Obrázky bot jsou orientační ilustrace, fotky z prodejny brzy doplníme.</p>
 </div></footer>
 </body>
 </html>

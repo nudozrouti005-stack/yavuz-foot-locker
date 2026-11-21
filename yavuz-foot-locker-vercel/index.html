@@ -417,6 +417,22 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   .book-card{left:12px}
   .cta-row p{font-size:.85rem}
 }
+/* grids with a leftover cell: hairlines on the cards instead of a filled background */
+.grid{background:transparent;gap:0;border:0}
+.grid > .card{outline:1px solid var(--line);outline-offset:-.5px}
+.sale{display:inline-block;vertical-align:middle;margin-left:.4rem;padding:.2rem .45rem;border-radius:3px;background:var(--cyan);color:var(--on-cyan);font-size:.72rem;font-weight:800;letter-spacing:.04em}
+
+/* hero photo (own AI image): cover the media box; the warm gradient behind stays as fallback */
+.hero-shot-media--photo{aspect-ratio:3/2}
+.hero-photo{position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover;display:block}
+.hero-shot-media--photo::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(11,11,12,.55))}
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .hero-photo{animation:parallax-photo linear both;animation-timeline:scroll(root);animation-range:0 700px}
+    @keyframes parallax-photo{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-36px,0)}}
+  }
+}
+.book-card{z-index:2}
 </style>
 </head>
 <body>
@@ -438,7 +454,7 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <div class="hero-actions"><a class="btn btn--live" href="kontakt.html#objednavka"><span class="btn-shine" aria-hidden="true"></span><span class="btn-label">Rezervovat pár</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="spark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" fill="currentColor"/></svg></span></a><a class="btn btn--ghost" href="kolekce.html">Prohlédnout kolekci</a></div>
 </div>
 <figure class="hero-shot">
-<div class="hero-shot-media"><img class="hero-img" src="photos/aj1-chicago.webp" alt="Air Jordan 1 Retro High OG Chicago, boční pohled" width="1400" height="788" fetchpriority="high"></div>
+<div class="hero-shot-media hero-shot-media--photo"><img class="hero-photo" src="img/hero-store-1400.webp" srcset="img/hero-store-800.webp 800w, img/hero-store-1400.webp 1400w" sizes="(min-width:960px) 45vw, 92vw" alt="Sedm párů Air Jordan na betonové podlaze prodejny" width="1400" height="933" fetchpriority="high"></div>
 <aside class="book-card" aria-label="Rezervace k vyzkoušení">
 <p class="micro">Rezervace k vyzkoušení</p>
 <ul class="checks"><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Vyber model a velikost</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Připravíme ho v prodejně</span></li><li><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span><span>Platíš až při vyzvednutí</span></li></ul>
@@ -452,7 +468,7 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 
 <section class="section" id="release" style="padding-block:clamp(2.5rem,6vw,4rem)"><div class="wrap">
 <article class="release reveal" aria-label="Release týdne">
-<img src="photos/aj4-bred.webp" alt="Air Jordan 4 Retro Bred, boční pohled" width="1400" height="788" loading="lazy">
+<img src="illus/aj4-bred.svg" alt="Air Jordan 4 Retro Bred, ilustrace" width="1400" height="788" loading="lazy">
 <div class="release-copy"><p class="eyebrow">Release týdne</p><h2>Air Jordan 4 <em>„Bred“</em></h2>
 <ul class="specs"><li><b>1989</b><span>první release</span></li><li><b>EU 40–45</b><span>velikosti</span></li></ul>
 <div class="hero-actions" style="justify-content:flex-start"><span class="price" style="align-self:center;margin-right:1rem">5 499 Kč</span><a class="btn" href="detail.html#aj4">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="more" href="releasy.html" style="align-self:center">Release kalendář <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
@@ -460,9 +476,9 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 
 <section class="section" id="kolekce"><div class="wrap">
 <div class="sec-head reveal"><div><p class="eyebrow">Jordan kolekce 2026</p><h2>Tři ikony, <br>které nikdy <em class="accent">nestárnou</em></h2></div>
-<div class="side"><p class="lead">Nejžádanější retro modely v prodejně. Všechny skladem ve velikostech EU 40 až 45 a každý pár s certifikátem pravosti.</p><a class="more" href="kolekce.html">Celá kolekce, 4 modely <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
+<div class="side"><p class="lead">Nejžádanější retro modely v prodejně. Všechny skladem ve velikostech EU 40 až 45 a každý pár s certifikátem pravosti.</p><a class="more" href="kolekce.html">Celá kolekce, Jordan i Nike <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div>
 <div class="grid"><article class="card reveal" id="aj1">
-<a href="detail.html#aj1" class="card-media" aria-label="Detail modelu Air Jordan 1 Retro High OG „Chicago“"><figure style="--tint:#E23A3A"><img src="photos/aj1-chicago.webp" alt="Air Jordan 1 Retro High OG „Chicago“, boční pohled" loading="lazy" width="1400" height="788"></figure></a>
+<a href="detail.html#aj1" class="card-media" aria-label="Detail modelu Air Jordan 1 Retro High OG „Chicago“"><figure style="--tint:#E23A3A"><img src="illus/aj1-chicago.svg" alt="Air Jordan 1 Retro High OG „Chicago“, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
 <div class="card-body">
 <div class="meta"><span>Retro</span><span>od 1985</span><span>hlazená kůže</span></div>
 <h3><a href="detail.html#aj1" class="card-link">Air Jordan 1 Retro High OG „Chicago“</a></h3>
@@ -470,15 +486,15 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <div class="card-foot"><div><div class="price">4 999 Kč</div><div class="sizes">EU 40–45</div></div>
 <a class="btn" href="detail.html#aj1" aria-label="Kup To: Air Jordan 1 Retro High OG „Chicago“">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 </div></article><article class="card reveal" id="aj4">
-<a href="detail.html#aj4" class="card-media" aria-label="Detail modelu Air Jordan 4 Retro „Bred“"><figure style="--tint:#B21E2B"><img src="photos/aj4-bred.webp" alt="Air Jordan 4 Retro „Bred“, boční pohled" loading="lazy" width="1400" height="788"></figure></a>
+<a href="detail.html#aj4" class="card-media" aria-label="Detail modelu Air Jordan 4 Retro „Bred“"><figure style="--tint:#B21E2B"><img src="illus/aj4-bred.svg" alt="Air Jordan 4 Retro „Bred“, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
 <div class="card-body">
-<div class="meta"><span>Retro</span><span>od 1989</span><span>6 barev</span></div>
+<div class="meta"><span>Retro</span><span>od 1989</span><span>8 barev</span></div>
 <h3><a href="detail.html#aj4" class="card-link">Air Jordan 4 Retro „Bred“</a></h3>
-<p>Kůže, síťované panely a viditelná Air jednotka v patě. Skladem v 6 barvách, od Bred po White Cement.</p>
+<p>Kůže, síťované panely a viditelná Air jednotka v patě. Skladem v 8 barvách, od Bred po Tour Yellow.</p>
 <div class="card-foot"><div><div class="price">5 499 Kč</div><div class="sizes">EU 40–45</div></div>
 <a class="btn" href="detail.html#aj4" aria-label="Kup To: Air Jordan 4 Retro „Bred“">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 </div></article><article class="card reveal" id="aj11">
-<a href="detail.html#aj11" class="card-media" aria-label="Detail modelu Air Jordan 11 Retro „Concord“"><figure style="--tint:#6B5BA8"><img src="photos/aj11-concord.webp" alt="Air Jordan 11 Retro „Concord“, boční pohled" loading="lazy" width="1400" height="788"></figure></a>
+<a href="detail.html#aj11" class="card-media" aria-label="Detail modelu Air Jordan 11 Retro „Concord“"><figure style="--tint:#6B5BA8"><img src="illus/aj11-concord.svg" alt="Air Jordan 11 Retro „Concord“, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
 <div class="card-body">
 <div class="meta"><span>Retro</span><span>od 1995</span><span>3 barvy</span></div>
 <h3><a href="detail.html#aj11" class="card-link">Air Jordan 11 Retro „Concord“</a></h3>
@@ -544,14 +560,14 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
 <footer class="site-foot"><div class="wrap">
 <div class="foot-grid">
 <div><a class="brand" href="./" style="font-size:1.6rem"><span>Yavuz</span><span>Foot Locker</span></a>
-<p class="lead" style="margin-top:1rem;font-size:1rem">Specialista na Air Jordan v Brně. Releasy, retro modely a ověřená pravost každého páru.</p></div>
-<div><h4>Obchod</h4><ul><li><a href="kolekce.html">Kolekce</a></li><li><a href="kolekce.html#aj1">Air Jordan 1</a></li><li><a href="kolekce.html#basket">Basketbal</a></li><li><a href="kolekce.html#aj11">Air Jordan 11</a></li></ul></div>
+<p class="lead" style="margin-top:1rem;font-size:1rem">Air Jordan a Nike v Brně. Releasy, retro modely a ověřená pravost každého páru.</p></div>
+<div><h4>Obchod</h4><ul><li><a href="kolekce.html">Kolekce</a></li><li><a href="kolekce.html#aj1">Air Jordan 1</a></li><li><a href="kolekce.html#basket">Basketbal</a></li><li><a href="kolekce.html#nike">Nike</a></li></ul></div>
 <div><h4>Služby</h4><ul><li><a href="sluzby.html#legit">Ověření pravosti</a></li><li><a href="releasy.html">Release kalendář</a></li><li><a href="sluzby.html#raffle">Raffle a releasy</a></li><li><a href="sluzby.html#pece">Restaurace</a></li><li><a href="sluzby.html#klub">Klub Yavuz</a></li></ul></div>
 <div><h4>Prodejna</h4><ul><li>Masarykova 21, Brno</li><li>Po–Pá 9:00–19:00</li><li>So 9:00–14:00</li><li><a href="kontakt.html">Kontakt a mapa</a></li><li><a href="design-system.html">Design systém</a></li></ul></div>
 </div>
 <div class="wordmark" aria-hidden="true">Yavuz Foot Locker</div>
 <div class="legal"><span>© 2026 Yavuz Foot Locker</span><span>Ceny jsou uvedeny včetně DPH.</span></div>
-<p class="footnote">Yavuz Foot Locker je nezávislý prodejce. Nike, Jordan a Air Jordan jsou ochranné známky společnosti Nike, Inc.</p>
+<p class="footnote">Yavuz Foot Locker je nezávislý prodejce. Nike, Jordan a Air Jordan jsou ochranné známky společnosti Nike, Inc. Obrázky bot jsou orientační ilustrace, fotky z prodejny brzy doplníme.</p>
 </div></footer>
 </body>
 </html>
