@@ -6,43 +6,39 @@
 <title>Design systém · Yavuz Foot Locker</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Yavuz Foot Locker – značková sportovní obuv v Brně.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
-<style>/* Yavuz Foot Locker — design system "Galerie" (was "Cinema Corner").
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;800&family=Instrument+Serif:ital@0;1&display=swap">
+<style>/* Yavuz Foot Locker — design system "Cinema Corner".
    Layout: a dark page; heroes sit inside a framed screen (frame + halftone + crosshair), micro navigation in
    [ brackets ] pinned to corners, content on a centred 1240px track with one section rhythm. Single dark theme by design. */
 :root{
-  color-scheme:light;
-  /* colour: a white gallery; one blue for links and compact CTAs */
-  --ink:#ffffff;       /* page (Gallery White) */
-  --carbon:#f5f5f7;    /* bands, footer, media stages (Studio Mist) */
-  --graphite:#ffffff;  /* cards, fields */
-  --frost:#fafafc;     /* floating bars */
-  --control:#e6e6e8;   /* thin edges, subdued fills */
-  --bone:#1d1d1f;      /* text (Ink) */
-  --ash:#707070;       /* muted text (Slate) */
-  --steel:#86868b;     /* outlines */
-  --line:#d6d6d6;
-  --line-strong:#86868b;
-  --cyan:#0071e3;      /* filled conversion pills */
-  --on-cyan:#ffffff;
-  --link:#0066cc;      /* inline links */
-  --launch:#b64400;    /* sale / launch labels */
-  --shadow:transparent;
-  --paper:var(--graphite); --mute:var(--ash); --accent:var(--cyan); --accent-ink:var(--link); --stone:var(--carbon);
+  color-scheme:dark;
+  /* colour */
+  --ink:#0B0B0C;       /* page */
+  --carbon:#151517;    /* frame, surfaces */
+  --graphite:#1F1F22;  /* cards, fields */
+  --bone:#ECE9E3;      /* text */
+  --ash:#8C8A86;       /* muted text */
+  --line:rgba(236,233,227,.14);
+  --line-strong:rgba(236,233,227,.32);
+  --cyan:#8FE6EA;      /* the one accent */
+  --on-cyan:#0B0B0C;
+  --shadow:rgba(0,0,0,.6);
+  /* aliases kept for older markup (map, inline styles) */
+  --paper:var(--graphite); --mute:var(--ash); --accent:var(--cyan); --accent-ink:var(--cyan); --stone:var(--ink);
   /* type */
-  --sans:"Inter","Helvetica Neue",Arial,sans-serif;
-  --serif:var(--sans);
-  --fs-display:clamp(2.6rem,7vw,5rem);
-  --fs-h2:clamp(2rem,4.4vw,3rem);
-  --fs-h3:clamp(1.2rem,2vw,1.5rem);
-  --fs-lead:clamp(1.0625rem,1.6vw,1.3125rem);
+  --sans:"Inter Tight","Inter","Helvetica Neue",Arial,sans-serif;
+  --serif:"Instrument Serif","Times New Roman",Georgia,serif;
+  --fs-display:clamp(2.6rem,7.2vw,6.2rem);
+  --fs-h2:clamp(2.2rem,5vw,4rem);
+  --fs-h3:clamp(1.3rem,2.2vw,1.6rem);
+  --fs-lead:clamp(1.05rem,1.5vw,1.2rem);
   --fs-micro:.75rem;
   /* space & shape */
-  --section:clamp(4rem,9vw,5.625rem);
+  --section:clamp(5rem,12vw,9rem);
   --frame:clamp(12px,3vw,40px);
   --track:1240px;
-  --r:9999px; --r-frame:28px; --r-card:28px; --r-nav:20px; --r-field:12px;
-  --halftone:none;
+  --r:4px; --r-frame:10px;
+  --halftone:radial-gradient(rgba(236,233,227,.2) 1px,transparent 1.7px) 0 0/6px 6px;
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -437,174 +433,6 @@ body:has(.cta-bar){padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
   }
 }
 .book-card{z-index:2}
-
-/* =====================================================================
-   GALERIE — light gallery layer. Overrides the older dark rules above:
-   white canvas, #f5f5f7 bands, white 28px cards without shadows,
-   blue only for links and compact pills, no gradients, no halftone.
-   ===================================================================== */
-body{background:var(--ink);color:var(--bone);font-size:1.0625rem;line-height:1.47;letter-spacing:-.022em;text-rendering:optimizeLegibility}
-body::before{background:var(--ink)}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
-.section + .section{border-top:0}
-.skip:focus{border-radius:9999px}
-
-/* type: semibold, sentence case, tight tracking */
-h1,h2,h3{font-weight:600;text-transform:none;letter-spacing:-.015em;line-height:1.08}
-h2{letter-spacing:-.02em}
-h3{line-height:1.17;letter-spacing:-.01em}
-.display{font-weight:600;line-height:1.05;letter-spacing:-.015em}
-.serif,h1 em,h2 em,.display .serif{font-family:var(--sans);font-style:normal;font-weight:600;text-transform:none;letter-spacing:-.015em;color:var(--ash)}
-.display .serif{display:block;font-size:.42em;line-height:1.2;margin-top:.35em;letter-spacing:0}
-.accent,.hl{color:inherit}
-.eyebrow,.micro{font-size:.75rem;font-weight:600;letter-spacing:-.01em;text-transform:none;color:var(--ash)}
-.eyebrow::before,.micro::before,.eyebrow::after,.micro::after{content:none}
-.eyebrow{font-size:clamp(1.0625rem,1.6vw,1.3125rem);color:var(--bone)}
-.lead{color:var(--ash);line-height:1.4}
-.scribble{display:none}
-
-/* links instead of brackets */
-.bracket,.more,.chips a{letter-spacing:-.01em;text-transform:none;font-weight:400}
-.bracket::before,.bracket::after,.more::before,.more::after,.chips a::before,.chips a::after{content:none}
-.bracket{font-size:.75rem;color:var(--bone);opacity:.8}
-.bracket:hover{color:var(--bone);opacity:1}
-.bracket[aria-current="page"]{color:var(--bone);opacity:1;font-weight:600}
-.more{font-size:1.0625rem;color:var(--link)}
-.more svg{color:currentColor}
-.more:hover{color:var(--link);text-decoration:underline}
-.chips{gap:.5rem}
-.chips a{font-size:.875rem;color:var(--bone);padding:.45rem 1rem;border-radius:9999px;box-shadow:inset 0 0 0 1px var(--steel)}
-.chips a:hover{color:var(--bone);background:var(--carbon)}
-.chips a.on{background:var(--bone);color:#fff;box-shadow:none}
-
-/* header: compact white bar */
-.site-head{background:color-mix(in srgb,var(--frost) 82%,transparent);border-bottom:1px solid var(--control)}
-.head-row{min-height:48px}
-.brand{font-weight:600;text-transform:none;letter-spacing:-.02em;line-height:1;font-size:1.1875rem}
-.brand span{display:inline}
-.brand span + span{margin-left:.3em}
-.nav{gap:1.75rem}
-.nav .sep{display:none}
-.menu-panel{background:var(--frost);border:1px solid var(--control);border-radius:var(--r-nav);padding:.75rem 1.25rem}
-.menu-panel .bracket{font-size:1.0625rem;padding:.5rem 0}
-
-/* buttons: blue pill + outlined pill */
-.btn{font-weight:400;font-size:.875rem;letter-spacing:-.016em;text-transform:none;padding:.7rem 1.35rem;border-radius:9999px;background:var(--cyan);color:#fff}
-.btn:hover{transform:translateY(-1px)}
-.btn--ghost{background:transparent;color:var(--bone);box-shadow:inset 0 0 0 1px var(--steel)}
-.btn--live::after,.btn-shine,.spark{display:none}
-
-/* hero: white stage, no frame chrome */
-.frame-hero{padding:0}
-.frame{background:var(--ink);border-radius:0;overflow:visible;min-height:0;padding:clamp(3.5rem,8vw,5.5rem) 16px clamp(2.5rem,6vw,4rem)}
-.frame::before,.frame::after,.frame-media::after,.frame-glow{display:none}
-.frame-hero--page .frame{padding-block:clamp(3.5rem,8vw,5.5rem) clamp(1.5rem,4vw,2.5rem)}
-.corner{display:none}
-.frame-copy{gap:1.1rem}
-.frame-media img{filter:none;opacity:.12}
-.hero-split{max-width:var(--track);margin-inline:auto;grid-template-columns:1fr!important;justify-items:center;text-align:center}
-.hero-text{justify-items:center}
-.hero-text .display{text-align:center}
-.hero-text .hero-actions{justify-content:center}
-.frame--split{padding-inline:max(16px,env(safe-area-inset-left,0px))}
-.frame--split .display{font-size:clamp(2.6rem,7vw,5rem)}
-.hero-shot{width:100%;max-width:1100px;padding-bottom:0}
-.hero-shot-media{border-radius:var(--r-card);background:var(--carbon)}
-.hero-shot-media::after,.hero-shot-media--photo::before{display:none}
-.hero-img{filter:none}
-.book-card{position:relative;left:auto;bottom:auto;margin:-2.5rem auto 0;width:min(360px,calc(100% - 32px));text-align:left;
-  background:var(--ink);border:0;border-radius:var(--r-card);box-shadow:0 0 0 1px var(--control);
-  -webkit-backdrop-filter:none;backdrop-filter:none;padding:1.4rem 1.5rem 1.5rem}
-@media (min-width:860px){.book-card{position:absolute;right:28px;left:auto;bottom:28px;margin:0}}
-.book-card .btn{justify-self:stretch}
-@media (max-width:700px){.book-card{left:auto}}
-
-/* release + cards: white cards on mist bands */
-.release{border:0;border-radius:var(--r-card);background:var(--carbon);padding:clamp(1.5rem,4vw,2.5rem)}
-.release img{filter:none}
-.release .specs b{font-weight:600}
-.release .specs span{letter-spacing:0;text-transform:none;font-size:.875rem}
-.grid,.features,.steps,.stats,.ds-grid{gap:20px;background:transparent;border:0}
-.grid > .card{outline:0}
-.card,.feature,.step,.stat,.swatch{background:var(--ink);border-radius:var(--r-card);overflow:hidden;box-shadow:0 0 0 1px var(--control)}
-.card:hover,.feature:hover,.step:hover{background:var(--ink);transform:translateY(-4px)}
-.card figure{background:var(--carbon);border-radius:20px;margin:8px 8px 0}
-.card figure::before{display:none}
-.card figure img{filter:none}
-.card-body{padding:1.5rem 1.75rem 1.75rem}
-.meta{letter-spacing:-.01em;text-transform:none;font-size:.75rem}
-.meta span:first-child{color:var(--launch)}
-.card-link:hover{color:var(--link)}
-.card-foot{border-top:1px solid var(--control)}
-.price,.tier-price,.stat b,.timeline b{font-weight:600;letter-spacing:-.02em}
-.sizes{letter-spacing:0}
-.sale{background:none;color:var(--launch);padding:0;font-size:.75rem;font-weight:600;letter-spacing:-.01em;border-radius:0}
-.feature .ico{border:0;border-radius:50%;background:var(--carbon);color:var(--bone)}
-.feature .tag{letter-spacing:-.01em;text-transform:none;color:var(--link);font-weight:400;font-size:.875rem}
-.timeline b{color:var(--bone)}
-
-/* bands alternate white / mist */
-.band,.guarantee{background:var(--carbon)}
-.band::before{display:none}
-.facts svg{color:var(--bone)}
-.facts li,.timeline,.timeline li{border-color:var(--line)}
-.quote{font-family:var(--sans);font-style:normal;font-weight:600;letter-spacing:-.02em;line-height:1.1}
-.quote-by,th{letter-spacing:0;text-transform:none}
-.table-wrap{border:0;border-radius:var(--r-card);box-shadow:0 0 0 1px var(--control);background:var(--ink)}
-
-/* forms */
-.form{background:var(--carbon);border:0;border-radius:var(--r-card)}
-.field label{letter-spacing:0;text-transform:none;font-size:.875rem;color:var(--bone)}
-.field input,.field select,.field textarea{background:var(--ink);border:1px solid var(--steel);border-radius:var(--r-field)}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cyan)}
-.sent{border-radius:var(--r-field)}
-.map{border:0;border-radius:var(--r-card);background:var(--carbon)}
-
-/* how it works, tiers, guarantee */
-.step-ico{background:var(--carbon);color:var(--bone);animation:none}
-.step-no{font-weight:600;color:var(--control);-webkit-text-stroke:0}
-.check{background:transparent;color:var(--cyan)}
-.tier--featured{background:var(--ink);box-shadow:0 0 0 2px var(--cyan);animation:none!important}
-.tier-flag{color:var(--link);font-size:.75rem}
-.guarantee-card{border:0;border-radius:var(--r-card);background:var(--ink)}
-
-/* faq */
-.faq,.faq-item{border-color:var(--line)}
-.faq-item summary{font-weight:600;font-size:1.1875rem;letter-spacing:-.01em}
-.faq-item summary:hover{color:var(--link)}
-
-/* sticky cta: floating frost capsule */
-.cta-bar{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));padding-bottom:0;border:0;border-radius:var(--r-nav);
-  background:color-mix(in srgb,var(--frost) 90%,transparent);box-shadow:0 0 0 1px var(--control);max-width:880px;margin-inline:auto}
-.cta-row{min-height:60px;padding-inline:20px}
-body:has(.cta-bar){padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
-
-/* footer */
-.site-foot{background:var(--carbon);border-top:0;font-size:.75rem;color:var(--ash)}
-.site-foot a{color:var(--ash)}
-.site-foot a:hover{color:var(--bone);text-decoration:underline}
-.foot-grid h4{letter-spacing:0;text-transform:none;color:var(--bone)}
-.foot-grid a:hover{color:var(--bone)}
-.wordmark{font-weight:600;text-transform:none;letter-spacing:-.04em;color:var(--control);-webkit-text-stroke:0}
-.legal{border-top:1px solid var(--line);padding-top:1rem}
-
-/* design-system page */
-.swatch i{border-radius:18px;border:1px solid var(--control)}
-.ds-row{border-color:var(--line)}
-.ds-row > span:first-child{letter-spacing:0;text-transform:none;font-size:.875rem}
-.ds-space i{background:var(--cyan);border-radius:6px}
-.ds-halftone{display:none}
-.scroll-progress{background:var(--cyan)}
-.ds-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
-.swatch{padding:8px 8px 1.25rem}
-.swatch b,.swatch code,.swatch .lead{padding-inline:.75rem}
-.frame-hero .frame > .hero-index{display:flex;position:static;justify-content:center;flex-wrap:wrap;gap:.5rem 2rem;margin-top:clamp(2rem,5vw,3rem)}
-.hero-index .bracket{font-size:1.0625rem;font-weight:500;opacity:1}
-.hero-index .bracket:hover{color:var(--link)}
-.frame{display:block}
-.frame--split .hero-split{display:grid}
-.frame-copy{margin-inline:auto}
 </style>
 </head>
 <body>
@@ -616,8 +444,8 @@ body:has(.cta-bar){padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
 </div></header>
 <main id="obsah"><section class="frame-hero frame-hero--page"><div class="frame">
 <span class="corner tl micro">Yavuz Foot Locker</span><span class="corner tr micro">Brno · CZ</span>
-<div class="frame-copy"><p class="eyebrow">Design systém</p><h1 class="display"><span>Galerie</span></h1><p class="lead">Vizuální jazyk obchodu: bílé plátno jako galerie, boty jako jediná barva na stránce a modrá jen tam, kde se kupuje. Všechny ukázky běží na stejném CSS jako web.</p></div>
-<a class="corner br bracket" href="#obsah-dal">Scroll</a></div></section><span id="obsah-dal"></span><div class="ds" id="ds-nav"><section class="section"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">Principy</p><h2>Bota je hvězda.</h2></div><div class="side"><p class="lead">Rozhraní mlčí: bílá plocha, pásy v jemné šedé, velké karty s rohy 28px a žádné stíny ani přechody. Barvu dodávají ilustrace bot. Modrá se objeví jen u odkazů a malých tlačítek k nákupu.</p></div></div></div></section><section class="section"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">Barvy</p><h2>Deset tokenů</h2></div><div class="side"><p class="lead">Jedno světlé téma. Bílé boty stojí na šedém podkladu <code>--carbon</code>, aby nezmizely.</p></div></div><div class="ds-grid"><div class="swatch"><i style="background:var(--ink)"></i><b>Gallery White</b><code>--ink · #FFFFFF</code><span class="lead" style="font-size:.85rem">Plocha stránky, karty, hero</span></div><div class="swatch"><i style="background:var(--carbon)"></i><b>Studio Mist</b><code>--carbon · #F5F5F7</code><span class="lead" style="font-size:.85rem">Střídavé pásy, podklad ilustrací, patička</span></div><div class="swatch"><i style="background:var(--frost)"></i><b>Paper Frost</b><code>--frost · #FAFAFC</code><span class="lead" style="font-size:.85rem">Plovoucí lišty (hlavička, CTA)</span></div><div class="swatch"><i style="background:var(--line)"></i><b>Hairline</b><code>--line · #D6D6D6</code><span class="lead" style="font-size:.85rem">Vlasové linky, oddělovače</span></div><div class="swatch"><i style="background:var(--bone)"></i><b>Ink</b><code>--bone · #1D1D1F</code><span class="lead" style="font-size:.85rem">Nadpisy a text</span></div><div class="swatch"><i style="background:var(--ash)"></i><b>Slate</b><code>--ash · #707070</code><span class="lead" style="font-size:.85rem">Tlumený text, právní drobnosti</span></div><div class="swatch"><i style="background:var(--cyan)"></i><b>Blue</b><code>--cyan · #0071E3</code><span class="lead" style="font-size:.85rem">Jen plná tlačítka (pilulky)</span></div><div class="swatch"><i style="background:var(--link)"></i><b>Link blue</b><code>--link · #0066CC</code><span class="lead" style="font-size:.85rem">Textové odkazy</span></div><div class="swatch"><i style="background:var(--steel)"></i><b>Steel</b><code>--steel · #86868B</code><span class="lead" style="font-size:.85rem">Obrysy polí a sekundárních tlačítek</span></div><div class="swatch"><i style="background:var(--launch)"></i><b>Launch</b><code>--launch · #B64400</code><span class="lead" style="font-size:.85rem">Sleva / novinka, holý text</span></div></div></div></section><section class="section"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">Písmo</p><h2>Jedno písmo, tři řezy.</h2></div><div class="side"><p class="lead">Inter 400, 500 a 600. Nadpisy polotučně s těsným prostrkáním, text 17px. Žádné verzálky, žádná kurzíva.</p></div></div><div class="ds-row"><span>Display · 600 · až 80px · −0.015em</span><div class="ds-demo"><p class="display" style="margin:0">Létání se dá naučit.<span class="serif">Air Jordan v Brně.</span></p></div></div><div class="ds-row"><span>H2 · 600 · až 48px</span><div class="ds-demo"><h2>Celá kolekce</h2></div></div><div class="ds-row"><span>H3 · 600 · 1.2–1.5rem</span><div class="ds-demo"><h3>Air Jordan 4 Retro</h3></div></div><div class="ds-row"><span>Kicker · 600 · 21px</span><div class="ds-demo"><p class="eyebrow">Release týdne</p></div></div><div class="ds-row"><span>Text · 400 · 17px / 1.47 · −0.022em</span><div class="ds-demo"><p>Retro klasiky a moderní basketbal. Každý pár prošel ověřením pravosti.</p></div></div><div class="ds-row"><span>Popisek · 600 · 12px</span><div class="ds-demo"><span class="micro">Brno · CZ</span><span class="sale">−30 %</span></div></div><div class="ds-row"><span>Cena · 600 · tabulkové číslice</span><div class="ds-demo"><span class="price">5 499 Kč</span></div></div></div></section><section class="section"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">Mezery a tvar</p><h2>Rytmus</h2></div><div class="side"><p class="lead">Základ 4px, 20px mezi prvky, 28px uvnitř karet a 90px mezi sekcemi. Oddělení plochou, ne stínem.</p></div></div><div class="ds-row"><span>Sekce · --section</span><div class="ds-demo"><div class="ds-space"><i style="width:16px;height:64px"></i><i style="width:16px;height:90px"></i></div><code>clamp(4rem, 9vw, 90px)</code></div></div><div class="ds-row"><span>Mezery prvků</span><div class="ds-demo"><div class="ds-space"><i style="width:8px;height:8px"></i><i style="width:20px;height:20px"></i><i style="width:28px;height:28px"></i></div><code>základ 4px · prvky 20px · karta 28px</code></div></div><div class="ds-row"><span>Rádius</span><div class="ds-demo"><span style="display:inline-block;width:72px;height:48px;background:var(--carbon);border-radius:28px"></span><span style="display:inline-block;width:72px;height:48px;background:var(--carbon);border-radius:20px"></span><span style="display:inline-block;width:72px;height:32px;background:var(--cyan);border-radius:9999px"></span><code>karty 28px · lišty 20px · tlačítka 9999px</code></div></div></div></section><section class="section"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">Komponenty</p><h2>Stavebnice</h2></div></div><div class="ds-row"><span>Navigace</span><div class="ds-demo"><a class="bracket" href="#ds-nav">Kolekce</a><a class="bracket" href="#ds-nav" aria-current="page">Služby · aktivní</a><a class="bracket" href="#ds-nav">O nás</a><code>12px, bez rámečků; aktivní = tučnější</code></div></div><div class="ds-row"><span>Tlačítka</span><div class="ds-demo"><a class="btn" href="#ds-nav">Kup To</a><a class="btn btn--ghost" href="#ds-nav">Sekundární</a><a class="more" href="#ds-nav">Odkaz v textu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div><div class="ds-row"><span>Filtry</span><div class="ds-demo"><div class="chips" style="margin:0"><a class="on" href="#ds-nav">Vše</a><a href="#ds-nav">Jordan</a><a href="#ds-nav">Nike</a></div></div></div><div class="ds-row"><span>Pole formuláře</span><div class="ds-demo"><div class="field" style="width:min(100%,320px)"><label for="ds-mail">E-mail</label><input id="ds-mail" placeholder="petra@email.cz"></div></div></div><div style="margin-top:3rem;display:grid;gap:1rem"><span class="micro">Karta boty</span><div class="grid" style="max-width:420px;grid-template-columns:1fr"><article class="card reveal" id="aj4">
+<div class="frame-copy"><p class="eyebrow">Design systém</p><h1 class="display"><span>Cinema</span><span><span class="accent">Corner</span></span></h1><p class="lead">Vizuální jazyk obchodu: tmavé plátno, rámovaný hero s rastrem, mikronavigace v hranatých závorkách a jediný tyrkysový akcent. Všechny ukázky běží na stejném CSS jako web.</p></div>
+<a class="corner br bracket" href="#obsah-dal">Scroll</a></div></section><span id="obsah-dal"></span><div class="ds" id="ds-nav"><section class="section"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">01 · Principy</p><h2>Plátno, rám, <em class="accent">akcent</em></h2></div><div class="side"><p class="lead">Fotka bot je hvězda, rozhraní mlčí. Text je kostěně bílý na téměř černé, navigace je drobná a sedí v rozích jako titulky. Tyrkysová se objeví jen tam, kam má jít oko: hlavní akce, aktivní stav a jedno zvýrazněné slovo v nadpisu.</p></div></div></div></section><section class="section"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">02 · Barvy</p><h2>Osm tokenů</h2></div><div class="side"><p class="lead">Jedno záměrně tmavé téma. Barvy bot se neomezují, jen tónují pozadí karty přes <code>--tint</code>.</p></div></div><div class="ds-grid"><div class="swatch"><i style="background:var(--ink)"></i><b>Ink</b><code>--ink · #0B0B0C</code><span class="lead" style="font-size:.85rem">Plocha stránky</span></div><div class="swatch"><i style="background:var(--carbon)"></i><b>Carbon</b><code>--carbon · #151517</code><span class="lead" style="font-size:.85rem">Rám heru, povrchy, formuláře</span></div><div class="swatch"><i style="background:var(--graphite)"></i><b>Graphite</b><code>--graphite · #1F1F22</code><span class="lead" style="font-size:.85rem">Pole, mapy, vnořené plochy</span></div><div class="swatch"><i style="background:var(--bone)"></i><b>Bone</b><code>--bone · #ECE9E3</code><span class="lead" style="font-size:.85rem">Text a nadpisy</span></div><div class="swatch"><i style="background:var(--ash)"></i><b>Ash</b><code>--ash · #8C8A86</code><span class="lead" style="font-size:.85rem">Tlumený text, mikrolabely</span></div><div class="swatch"><i style="background:var(--line)"></i><b>Line</b><code>--line · rgba(236,233,227,.14)</code><span class="lead" style="font-size:.85rem">Vlasové linky, mřížky</span></div><div class="swatch"><i style="background:var(--cyan)"></i><b>Cyan</b><code>--cyan · #8FE6EA</code><span class="lead" style="font-size:.85rem">Jediný akcent: CTA, zvýraznění, aktivní stav</span></div><div class="swatch"><i style="background:var(--on-cyan)"></i><b>On cyan</b><code>--on-cyan · #0B0B0C</code><span class="lead" style="font-size:.85rem">Text na tyrkysové</span></div></div></div></section><section class="section"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">03 · Písmo</p><h2>Grotesk <em>a serif</em></h2></div><div class="side"><p class="lead">Inter Tight 800 verzálkami nese nadpisy a ceny, Instrument Serif italic dává jeden kontrastní řádek. Text a mikrolabely jsou Inter Tight 400 a 600.</p></div></div><div class="ds-row"><span>Display · 800 · clamp(2.6–6.2rem)</span><div class="ds-demo"><p class="display" style="font-weight:800;text-transform:uppercase;margin:0"><span><span class="hl">Létání</span> se dá</span><span class="serif">naučit.</span></p></div></div><div class="ds-row"><span>H2 · 800 · clamp(2.2–4rem)</span><div class="ds-demo"><h2>Celá kolekce</h2></div></div><div class="ds-row"><span>H3 · 800 · 1.3–1.6rem</span><div class="ds-demo"><h3>Air Jordan 4 Retro</h3></div></div><div class="ds-row"><span>Serif akcent · Instrument Serif italic</span><div class="ds-demo"><p class="quote" style="font-size:2.2rem">„Kus historie, který si můžeš obout.“</p></div></div><div class="ds-row"><span>Lead · 400 · 1.05–1.2rem</span><div class="ds-demo"><p class="lead">Retro klasiky a moderní basketbal. Každý pár prošel ověřením pravosti.</p></div></div><div class="ds-row"><span>Mikrolabel · 600 · 12px · +0.08em</span><div class="ds-demo"><span class="micro">Release týdne</span><span class="micro">Brno · CZ</span></div></div><div class="ds-row"><span>Cena · 800 · tabulkové číslice</span><div class="ds-demo"><span class="price">5 499 Kč</span></div></div></div></section><section class="section"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">04 · Mezery a tvar</p><h2>Rytmus</h2></div><div class="side"><p class="lead">Jedna míra pro sekce, jedna pro rám. Rohy skoro ostré, oddělení linkou místo stínu.</p></div></div><div class="ds-row"><span>Sekce · --section</span><div class="ds-demo"><div class="ds-space"><i style="width:16px;height:80px"></i><i style="width:16px;height:120px"></i><i style="width:16px;height:144px"></i></div><code>clamp(5rem, 12vw, 9rem)</code></div></div><div class="ds-row"><span>Rám heru · --frame</span><div class="ds-demo"><div class="ds-space"><i style="width:12px;height:12px"></i><i style="width:24px;height:24px"></i><i style="width:40px;height:40px"></i></div><code>clamp(12px, 3vw, 40px)</code></div></div><div class="ds-row"><span>Rádius</span><div class="ds-demo"><span style="display:inline-block;width:64px;height:40px;border:1px solid var(--line-strong);border-radius:4px"></span><span style="display:inline-block;width:64px;height:40px;border:1px solid var(--line-strong);border-radius:10px"></span><code>--r 4px · --r-frame 10px</code></div></div></div></section><section class="section"><div class="wrap"><div class="sec-head"><div><p class="eyebrow">05 · Komponenty</p><h2>Stavebnice</h2></div></div><div class="ds-row"><span>Mikronavigace</span><div class="ds-demo"><a class="bracket" href="#ds-nav">Kolekce</a><a class="bracket" href="#ds-nav" aria-current="page">Služby · aktivní</a><a class="bracket" href="#ds-nav">O nás</a><code>najetí: tyrkysová, závorky se rozestoupí</code></div></div><div class="ds-row"><span>Tlačítka</span><div class="ds-demo"><a class="btn" href="#ds-nav">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn--ghost" href="#ds-nav">Sekundární</a><a class="more" href="#ds-nav">Odkaz v textu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div><div class="ds-row"><span>Pole formuláře</span><div class="ds-demo"><div class="field" style="width:min(100%,320px)"><label for="ds-mail">E-mail</label><input id="ds-mail" placeholder="petra@email.cz"></div></div></div><div class="ds-row"><span>Rastr (halftone)</span><div class="ds-demo"><div class="ds-halftone" style="width:min(100%,420px)"></div><code>--halftone · maska od středu</code></div></div><div style="margin-top:3rem;display:grid;gap:1rem"><span class="micro">Karta boty</span><div class="grid" style="max-width:420px;grid-template-columns:1fr"><article class="card reveal" id="aj4">
 <a href="detail.html#aj4" class="card-media" aria-label="Detail modelu Air Jordan 4 Retro „Bred“"><figure style="--tint:#B21E2B"><img src="illus/aj4-bred.svg" alt="Air Jordan 4 Retro „Bred“, ilustrace" loading="lazy" width="1400" height="788"></figure></a>
 <div class="card-body">
 <div class="meta"><span>Retro</span><span>od 1989</span><span>8 barev</span></div>
@@ -625,7 +453,7 @@ body:has(.cta-bar){padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
 <p>Kůže, síťované panely a viditelná Air jednotka v patě. Skladem v 8 barvách, od Bred po Tour Yellow.</p>
 <div class="card-foot"><div><div class="price">5 499 Kč</div><div class="sizes">EU 40–45</div></div>
 <a class="btn" href="detail.html#aj4" aria-label="Kup To: Air Jordan 4 Retro „Bred“">Kup To <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-</div></article></div></div></div></section></div></main>
+</div></article></div></div><div style="margin-top:3rem;display:grid;gap:1rem"><span class="micro">Rámovaný hero</span><div class="frame"><div class="frame-media" aria-hidden="true"><img src="illus/aj1-chicago.svg" alt=""><img src="illus/aj11-concord.svg" alt=""></div><span class="corner tl micro">Značka / místo</span><span class="corner tr micro">Navigace</span><div class="frame-copy"><p class="display" style="font-size:clamp(2rem,5vw,3.6rem);font-weight:800;text-transform:uppercase;margin:0"><span><span class="hl">Jedno slovo</span> tyrkysově</span><span class="serif">serif řádek pod ním</span></p></div><span class="corner bl micro">Kontakt</span><span class="corner br micro">Scroll</span></div></div></div></section></div></main>
 <footer class="site-foot"><div class="wrap">
 <div class="foot-grid">
 <div><a class="brand" href="./" style="font-size:1.6rem"><span>Yavuz</span><span>Foot Locker</span></a>
